@@ -57,7 +57,7 @@ class PRA_Model():
         #nodee   = 0 #e
         #range_P_1 = 0 #range of P'
         length = len(path) #length of path
-        hspe = 1 #the path feature value
+        hspe = 0 #the path feature value
         if direction == 0:#注意正向迭代迭代
             if len(path)==1:
                 query = "MATCH (N),(M)-[r:"+path[0]['relationship']+"]->(tar)"
@@ -80,10 +80,26 @@ class PRA_Model():
         elif direction == 1:#注意反向迭代
             if length == 1:#关系路径长度只剩1
                 query = "MATCH (N),(M)-[r:"+path[0]['relationship']+"]->(tar) WHERE id(N)="+str(tonode)+"AND id(M)="+str(fromnode)+"WITH N,[tar] AS target RETURN N IN target"
-                if self.Graph.run(query).data()[0]['N IN target']==True:#如果到节点与从节点通过关系链接的话
-                    hspe = 1/
+                data = self.Graph.run(query).data()
+                if not data:
+                    hspe = 0
+                elif data[0]['N IN target']==True:#如果到节点与从节点通过关系链接的话
+                    query_end = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
+                    hspe = 1/self.Graph.run(query_end).data()[0]['count(N)']
                 else:
-                    hspe = 0 
+                    hspe = 0
+                return hspe
+            else:
+                query_start = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
+                nodes_count = self.Graph.run(query_start).data()[0]['count(N)']
+                if nodes_count == 0:
+                    return 0
+                else:
+                    query_middle = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN id(N)"
+                    nodes = self.Graph.run(query_middle).data()
+                    for entity in nodes:
+                        hspe += (1/nodes_count) * self.compute_feature(path[1:],entity['id(N)'],tonode)
+                    return hspe
         return hspe
 
     def train(self):
@@ -95,4 +111,4 @@ class PRA_Model():
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
     #PRA.find_paths(mode='permutions')
-    PRA.compute_feature(path=[{'relationship':'HAS'}],fromnode=125,tonode=131)
+    print('path_feature:',PRA.compute_feature(path=[{'relationship':'HAS'},{'relationship':'ASSIGNED_TO'}],fromnode=123,tonode=133))
