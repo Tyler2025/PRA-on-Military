@@ -1,0 +1,19 @@
+大类,类型,名称,动力装置,制导系统,_id,图片,产国,研制时间,弹长,研发单位,全重,关注度,简介,最大速度,弹径,装药类型
+爆炸物,氢弹,俄罗斯洲际弹道导弹热核弹头,NULL,惯性制导、格洛纳斯系统,{'$oid': '5cc93454831b973d657f25de'},NULL,苏/俄,20世纪60年代,22700毫米,NULL,47200千克,NULL,NULL,15925千米/时,1950毫米,550千吨TNT当量
+爆炸物,氢弹,TN70/71潜地导弹热核弹头,NULL,NULL,{'$oid': '5cc93454831b973d657f25df'},NULL,法国,1974年,NULL,法国原子能委员会,200千克,NULL,NULL,NULL,NULL,150千吨TNT当量
+爆炸物,氢弹,TN90地地导弹热核战斗部,NULL,NULL,{'$oid': '5cc93454831b973d657f25e0'},NULL,法国,1983年,7500毫米,法国原子能委员会,NULL,NULL,NULL,NULL,530毫米,10-80千吨TNT当量
+爆炸物,氢弹,俄罗斯空射巡航导弹热核战斗部,涡扇发动机,惯性制导，地形匹配修正,{'$oid': '5cc93454831b973d657f25e1'},http://images.huanqiu.com/sarons/2014/03/0b2c7cc50f5ed55739cc79ab035f5277.jpg,苏/俄,20世纪60年代,6040毫米,NULL,1250千克,NULL,NULL,940千米/时,514毫米,200千吨TNT当量
+爆炸物,氢弹,WE177热核炸弹,NULL,NULL,{'$oid': '5cc93455831b973d657f25e2'},NULL,英国,NULL,NULL,NULL,431千克,NULL,NULL,NULL,NULL,400千吨TNT当量
+爆炸物,氢弹,俄罗斯潜地弹道导弹热核弹头,NULL,NULL,{'$oid': '5cc93455831b973d657f25e3'},NULL,苏/俄,20世纪60年代中期,14800毫米,NULL,40000千克,NULL,NULL,NULL,1900毫米,100千吨TNT当量
+爆炸物,氢弹,TN80/81空地导弹热核战斗部,NULL,NULL,{'$oid': '5cc93455831b973d657f25e4'},NULL,法国,1974年,5380毫米,法国原子能委员会,NULL,NULL,NULL,NULL,380毫米,300千吨TNT当量
+爆炸物,氢弹,TN75/76潜地导弹热核弹头,NULL,NULL,{'$oid': '5cc93455831b973d657f25e5'},NULL,法国,1987年,NULL,法国原子能委员会,NULL,NULL,NULL,NULL,NULL,150千吨TNT当量
+爆炸物,氢弹,TN60/61潜地导弹热核弹头,NULL,NULL,{'$oid': '5cc93455831b973d657f25e6'},NULL,法国,1968年,1520毫米,NULL,375千克,(5分),NULL,NULL,760毫米,120万吨TNT当量
+爆炸物,氢弹,“三叉戟”潜地导弹热核弹头,NULL,NULL,{'$oid': '5cc93456831b973d657f25e7'},NULL,英国,1982年,NULL,NULL,200千克,NULL,NULL,NULL,NULL,100千吨TNT当量
+爆炸物,氢弹,美国潜地弹道导弹热核弹头,NULL,惯性导航系统,{'$oid': '5cc93456831b973d657f25e8'},NULL,美国,20世纪六七十年代,10400毫米,NULL,NULL,(5分),NULL,NULL,1800毫米,1000千吨TNT当量
+爆炸物,氢弹,俄罗斯海射巡航导弹热核战斗部,NULL,惯性制导，地形匹配修正,{'$oid': '5cc93456831b973d657f25e9'},http://images.huanqiu.com/sarons/2014/03/78f7eb2c6270198ee2552d37e9ea903d.jpg,苏/俄,1960年,8090毫米,NULL,1700千克,NULL,NULL,720千米/时,510毫米,200千吨TNT当量
+爆炸物,氢弹,美国巡航导弹热核战斗部,NULL,地形匹配系统辅助惯性导航系统,{'$oid': '5cc93456831b973d657f25ea'},NULL,美国,20世纪50年代,5560毫米,NULL,12000千克,NULL,NULL,NULL,527毫米,200千吨TNT当量
+爆炸物,氢弹,“黄太阳”热核炸弹,NULL,NULL,{'$oid': '5cc93456831b973d657f25eb'},NULL,英国,1958年,2700毫米,NULL,NULL,NULL,NULL,NULL,1200毫米,10000千吨TNT当量
+爆炸物,氢弹,美国洲际弹道导弹热核弹头,NULL,惯性制导系统,{'$oid': '5cc93456831b973d657f25ec'},NULL,美国,20世纪50年代,21600毫米,NULL,87500千克,NULL,NULL,NULL,2330毫米,300千吨TNT当量
+爆炸物,氢弹,“北极星”潜地导弹热核弹头,NULL,NULL,{'$oid': '5cc93456831b973d657f25ed'},NULL,英国,1963年,NULL,NULL,NULL,NULL,NULL,NULL,NULL,200千吨TNT当量
+爆炸物,氢弹,美国Mk/B系列热核炸弹,NULL,NULL,{'$oid': '5cc93457831b973d657f25ee'},NULL,美国,20世纪50年代,3220毫米,NULL,325千克,NULL,NULL,NULL,340毫米,340千吨TNT当量
+爆炸物,氢弹,“蓝剑”空地导弹热核战斗部,NULL,惯性制导系统,{'$oid': '5cc93457831b973d657f25ef'},NULL,英国,1962年,10067毫米,NULL,6800千克,NULL,NULL,1960千米/时,1280毫米,1000千吨TNT当量

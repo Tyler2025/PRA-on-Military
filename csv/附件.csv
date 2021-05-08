@@ -1,0 +1,153 @@
+_id,参战情况,图片,数量,类型,口径,名称,生产年限,简介,全枪重,战斗射速,全枪长,有效射程,制造商,大类,发射性能,产国
+{'$oid': '5cc93276831b973d657f1b99'},NULL,,NULL,附件,NULL,巡逻包,NULL,,NULL,NULL,NULL,NULL,艾科提斯公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93276831b973d657f1b9a'},NULL,,NULL,附件,NULL,浸身服,NULL,,NULL,NULL,NULL,NULL,台风公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93276831b973d657f1b9b'},NULL,,NULL,附件,NULL,隐藏通信器,NULL,,NULL,NULL,NULL,NULL,电视设备协会（TEA）,枪械与单兵,NULL,美国
+{'$oid': '5cc93276831b973d657f1b9c'},NULL,,NULL,附件,NULL,PLCE背包,NULL,,NULL,NULL,NULL,NULL,斯尔弗曼公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93276831b973d657f1b9d'},NULL,,NULL,附件,NULL,BCB极地手套,NULL,,NULL,NULL,NULL,NULL,BCB国际公司(英国，加的夫),枪械与单兵,NULL,英国
+{'$oid': '5cc93276831b973d657f1b9e'},NULL,,NULL,附件,NULL,无线电遥控起爆器,NULL,,NULL,NULL,NULL,NULL,Sonic通信(国际)有限公司(英国),枪械与单兵,NULL,英国
+{'$oid': '5cc93276831b973d657f1b9f'},NULL,,NULL,附件,NULL,LITE头戴式耳机,NULL,,NULL,NULL,NULL,NULL,电视设备协会(TEA),枪械与单兵,NULL,美国
+{'$oid': '5cc93276831b973d657f1ba0'},NULL,,NULL,附件,NULL,“幻影”系列发送器,NULL,,NULL,NULL,NULL,NULL,CCS国际有限公司,枪械与单兵,NULL,美国
+{'$oid': '5cc93276831b973d657f1ba1'},NULL,,NULL,附件,NULL,Diveguard MK2遇险救助系统,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,以色列
+{'$oid': '5cc93276831b973d657f1ba2'},NULL,,NULL,附件,NULL,LASH头戴式耳机,NULL,,NULL,NULL,NULL,NULL,电视设备协会(TEA),枪械与单兵,NULL,美国
+{'$oid': '5cc93277831b973d657f1ba3'},NULL,,NULL,附件,NULL,BCBG格斗手套,NULL,,NULL,NULL,NULL,NULL,BCB国际公司(英国，加的夫),枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba4'},NULL,,NULL,附件,NULL,NP宇航公司伞兵头盔,NULL,,NULL,NULL,NULL,NULL,英国NP宇航公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba5'},NULL,,NULL,附件,NULL,“精英”2000XC,NULL,,NULL,NULL,NULL,NULL,白岩(whiterock)通信有限公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba6'},NULL,,NULL,附件,NULL,CQC公司90式迷彩步兵背包,NULL,,NULL,NULL,NULL,NULL,CQC公司(英国，巴恩斯特布),枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba7'},NULL,,NULL,附件,NULL,PTAC安全终端抗震数据终端,NULL,,NULL,NULL,NULL,NULL,Redifon MEL Ltd,枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba8'},NULL,,NULL,附件,NULL,Alinco DJ-X10扫描接收机,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,英国
+{'$oid': '5cc93277831b973d657f1ba9'},NULL,,NULL,附件,NULL,腰带包,NULL,"
+艾科提斯公司腰带包是带子的支撑系统，并且可以与艾科提斯公司的带子一起使用，或者与其他带子一起使用。这种腰带包使用“科尔迪尤拉”织物制造，并在肩部充填了泡沫材料，背板使用网状材料以增加透气性，背板和肩部使用D形环，以增加连接点。一条带子可以连接1713型侧袋。
+",NULL,NULL,NULL,NULL,艾科提斯公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93278831b973d657f1baa'},NULL,,NULL,附件,NULL,马钶丛林靴,NULL,,NULL,NULL,NULL,NULL,马钶公司(法国，阿让特伊),枪械与单兵,NULL,法国
+{'$oid': '5cc93278831b973d657f1bab'},NULL,,NULL,附件,NULL,A-Ⅲ型大空降背包,NULL,"
+飞鹰工业公司（Eagie Industries Inc）制造了一系列具有不同负荷容量的背包，并且针对不同的任务情况进行设计。产品包括A-Ⅲ大的空降背包、大的A-Ⅲ背包和各种巡逻背包。
+",NULL,NULL,NULL,NULL,飞鹰工业公司（Eagie Industries Inc）,枪械与单兵,NULL,美国
+{'$oid': '5cc93278831b973d657f1bac'},NULL,,NULL,附件,NULL,蛙鞋,NULL,,NULL,NULL,NULL,NULL,FoilForce公司,枪械与单兵,NULL,美国
+{'$oid': '5cc93278831b973d657f1bad'},NULL,,NULL,附件,NULL,KY-189智能安全听筒,NULL,,NULL,NULL,NULL,NULL,NAPCO国际公司(美国),枪械与单兵,NULL,美国
+{'$oid': '5cc93278831b973d657f1bae'},NULL,,NULL,附件,NULL,BCB风镜,NULL,,NULL,NULL,NULL,NULL,BCB国际公司(英国，加的夫),枪械与单兵,NULL,英国
+{'$oid': '5cc93278831b973d657f1baf'},NULL,http://images.huanqiu.com/sarons/2014/01/e29ba13e5d1c45833de22994c02104ae.jpg,NULL,附件,NULL,Irvin-GQ公司LLP MK 1低空降落伞,NULL,,NULL,NULL,NULL,NULL,Irvin-GQ公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93279831b973d657f1bb0'},英国空降部队,,NULL,附件,NULL,低空降落伞组,NULL,"
+英国低空降落伞组是Irvin-GQ公司8米低空圆锥形伞衣与目前正在使用的LLPMKl背包和系带的组合。这是一种使用强制开伞拉绳操作的降落伞组，装备于英国空降部队，可从76米(250英尺)的跳伞高度完成集中战术空降攻击。低空降落伞的一个关键特点是：伞衣是通过提升网进行控制的，网眼覆盖的稳定缝可快速衰减伞衣的振动。
+",NULL,NULL,NULL,NULL,Irvin-GQ公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93279831b973d657f1bb1'},NULL,,NULL,附件,NULL,军用雨衣,NULL,"
+戈尔(Gore-Tex)双片雨衣，由与英国国防部(MOD)的试制和开发单位、材料和被服研发机构以及国防被服与织物局共同设计。它经英国国防部认可，并且现在已经成为士兵95款被服的一部分。其特点具有：透气性、运动方便以及重量轻；戈尔能够实现排汗，使士兵时刻处于干燥状态并减小热应力。这样也减小了体温下降的风险，减小了与应力相关的判断错误。
+",NULL,NULL,NULL,NULL,戈尔公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93279831b973d657f1bb2'},NULL,,NULL,附件,NULL,葆旎（Bolle）护目镜,NULL,"
+葆旎（Bolle）护目镜采用聚合物框架，具有柔性且便于安装。设计了包含有沟槽，可容纳大多数类型的镜片。透镜组合采用双聚碳酸酯设计，经过抗划伤和防雾理，可以根据要求提供透明或者灰色，以及其他颜色的透镜。该款护目镜由葆（Bolle）SAS（法国，Arbent-Oyonnax）制造，提供给法国特种部队。
+",NULL,NULL,NULL,NULL,葆旎（Bolle）SAS（法国，Arbent-Oyonnax）,枪械与单兵,NULL,法国
+{'$oid': '5cc93279831b973d657f1bb3'},NULL,,NULL,附件,NULL,KillFlash ,NULL,"
+观察、监视或者武器瞄准器光学系统的物镜反射，会暴露操作者的位置或造成行动失败。Tenebraex公司的KillFlash防反光装置(ARDS)是一种轻型、现场抗闪烁的解决方案。
+
+它们隐藏反射、不损失分辨率、没有大量的光损失或者降低光学系统的视场；还具有特殊配置的小管蜂巢结构，起普通镜头盖的作用。它可以隐藏反射光并且屏蔽由视场外部光源引起的眩光KillFlashARDS适于多种光学系统，包括双目镜、夜视监视光学系统和护目镜、武器瞄准器和热观察器。
+",NULL,NULL,NULL,NULL,Tenebraex公司(美国),枪械与单兵,NULL,美国
+{'$oid': '5cc93279831b973d657f1bb4'},NULL,,NULL,附件,NULL,第二代拓展冷天气被服系统,NULL,"
+戈尔公司第二代被服系统包括派克式外套和裤子，是针对-50℃至-56℃(-60°F至-70°F)的温度范围而设计。裤子上有膝部和臀抗磨补片、装物口袋、皮带环和带子，大的装物袋后面有一个暖手袋，一个双向全尺寸拉链、裤脚和袖口上用于扎紧的勾和环、腋下通气结构、肘部加固结构和中胸部的饰片。
+",NULL,NULL,NULL,NULL,戈尔公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93279831b973d657f1bb5'},海湾战争,,NULL,附件,NULL,TP-1E/TP-2E防弹衣,NULL,"
+TP-1E防弹衣是海湾战争中“海军特种作战”战斗经验丰富的“老兵”了。它已经在(器械)潜水、跳伞、绳降、攀岩以及使用登船网和武器实战中被全世界的特种作战部队人员所验证。TP-1E防弹衣将防护延长至尾骨，它与四个尼龙张力带一同提供后背下部的支持和防弹保护。颈部片延长至脊骨，以防止脊骨在俯卧位置受到损伤冲击和粉碎背部硬装甲插入袋为折叠式设计，这样可以在伸臂、爬行或者是用肩扛武器射击时允许肩胛充分运动。Kevlar TP-1E和Spectra TP-2E提供相同等级的防弹保护：9毫米铅芯钢皮机枪子弹的射击。
+",NULL,NULL,NULL,NULL,美国装甲公司,枪械与单兵,NULL,美国
+{'$oid': '5cc9327a831b973d657f1bb6'},NULL,,NULL,附件,NULL,带嵌入物冷湿环境手套（美国）,NULL,"
+美国戈尔公司生产的带嵌入物冷湿环境手套。
+",NULL,NULL,NULL,NULL,戈尔公司(美国，马里兰州),枪械与单兵,NULL,美国
+{'$oid': '5cc9327a831b973d657f1bb7'},NULL,,NULL,附件,NULL,PTR349VHF/FM无线电台,NULL,,NULL,NULL,NULL,NULL,BAE系统公司  ,枪械与单兵,NULL,英国
+{'$oid': '5cc9327a831b973d657f1bb8'},NULL,,NULL,附件,NULL,“马刀”巡逻包,NULL,,NULL,NULL,NULL,NULL,Hawkmoor公司/Karrimor SF公司,枪械与单兵,NULL,英国
+{'$oid': '5cc9327a831b973d657f1bb9'},NULL,,NULL,附件,NULL,马钶特种部队战斗服,NULL,"
+由马钶公司(法国，阿让特伊)制造提供给法国空降部队，马钶“特种部队”战斗服带胸袋、腿袋、可调整松紧的带粘扣带的袖口和有弹力的裤脚。从颈部到踝部有两个垂直的拉链，因此便于穿戴或脱下。
+",NULL,NULL,NULL,NULL,马钶公司(法国，阿让特伊),枪械与单兵,NULL,法国
+{'$oid': '5cc9327a831b973d657f1bba'},NULL,,NULL,附件,NULL,“狞獾”（PRM 4740A）跳频手持式收发机,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,英国
+{'$oid': '5cc9327a831b973d657f1bbb'},NULL,,NULL,附件,NULL,EPS-21护目镜,NULL,"
+这些护目镜最先是按照以色列国防部队的严格规范开发的。目的是为了防止阳光、风、尘、弹片和激光辐射的伤害。该系统由护目镜框架系带、透明的防弹透镜、大量的易于安装的外装透镜、可选的校正镜片和一个尼龙携带盒等组成，该尼龙携带盒用于将护目镜和附件透镜装在个人承载装备中，它们与各种军用和警用头盔以及瞄准器兼容。
+",NULL,NULL,NULL,NULL,镜泰(Gentex)公司(美国，宾西法尼亚州),枪械与单兵,NULL,美国
+{'$oid': '5cc9327a831b973d657f1bbc'},NULL,,NULL,附件,NULL,沙漠伪装外套和裤子,NULL,"
+专为温差较大的沙漠环境设计。可套在白天服装外面穿用。钮扣在内侧，以便额外添加中间絮有聚酯棉的衬垫。
+",NULL,NULL,NULL,NULL,军事物流(Military Logistics)公司(美国，佛罗里达州,枪械与单兵,NULL,美国
+{'$oid': '5cc9327b831b973d657f1bbd'},NULL,,NULL,附件,NULL,飞标4,1983年,“飞标4”(Boomerang4)用来确定藏在墙壁、天花板、花草和家具中的窃听器位置。,NULL,NULL,NULL,NULL,信息安全协会(ISA)(美国),枪械与单兵,NULL,美国
+{'$oid': '5cc9327b831b973d657f1bbe'},NULL,,NULL,附件,NULL,比利时轻型通用夜间观察系统,NULL,"
+比利时光学与精密仪器公司轻型通用夜间观察系统（LUNOS）是一种无源夜视系列产品，它由双目式壳体、几种具有不同放大倍数（1、4、6倍）的物镜等组成，还有一些备选件，如面罩、把手、单脚架包和运输盒、用于x6型的标线片。轻型通用夜间观察系统可现场更换物镜。物镜更换类似于更换照相机的镜头。该系统能够让用户在现场于一分钟内将轻型、头戴式、免手持、夜光驱动的护目镜变为中距离或者长距离三脚架安装的观察双目镜。该系统的模块化属性使其适于多种应用，并便于以后的设备系列集成。
+",NULL,NULL,NULL,NULL,比利时光学与精密仪器公司（比利时，奥德纳尔德）,枪械与单兵,NULL,比利时
+{'$oid': '5cc9327b831b973d657f1bbf'},越南，波斯湾战争,,NULL,附件,NULL,5850沙漠靴 ,戈尔公司,奥塔玛公司的靴子供应美国国防部和其他军事部队和警察部队。在越南和波斯湾战争中曾装备现役军人。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc9327b831b973d657f1bc0'},NULL,,NULL,附件,NULL,突击队员防弹衣,NULL,"
+ 
+",NULL,NULL,NULL,NULL,美国杜邦(DuPont)公司,枪械与单兵,NULL,美国
+{'$oid': '5cc9327c831b973d657f1bc1'},NULL,,NULL,附件,NULL,GB7轻型沙漠靴,NULL,,NULL,NULL,NULL,NULL,GB Britton公司(英国，布里斯托尔),枪械与单兵,NULL,英国
+{'$oid': '5cc9327c831b973d657f1bc2'},NULL,,NULL,附件,NULL,T系列装甲 ,NULL,T板防弹衣是为满足在城市、沙漠或者丛林环境的警察和准军事行动要求而设计的。该防弹衣防水防霉。肩带经过加固，用于支撑抗步枪射击的前后硬装甲插入板。宽大的腹带可以保证在奔跑和爬行时硬装甲紧贴身体。腹带上的双层粘接搭扣可以防止在使用承载设备或者在丛林巡逻时意外松开。腰部下边缘上的粘接搭扣组连接点用来连接可选的可取式腹股沟板。外部载物袋可将T板防弹衣当成承载外衣。可以按要求对T系列进行定制。,NULL,NULL,NULL,NULL,美国装甲公司(美国，加利福尼亚州),枪械与单兵,NULL,美国
+{'$oid': '5cc9327c831b973d657f1bc3'},NULL,,NULL,附件,NULL,BCB丛林靴 ,NULL,"
+该靴具有帆布和尼龙鞋面，皮革鞋尖和跟部以及“巴拿马”鞋垫。
+",NULL,NULL,NULL,NULL, BCB国际公司  (英国，加的夫),枪械与单兵,NULL,英国
+{'$oid': '5cc9327c831b973d657f1bc4'},NULL,,NULL,附件,NULL,Lucie夜视镜,NULL,,NULL,NULL,NULL,NULL,泰利斯集团安琴公司,枪械与单兵,NULL,法国
+{'$oid': '5cc9327c831b973d657f1bc5'},越南战争海湾战争,,NULL,附件,NULL,4156沙漠靴,NULL,30多年来，奥塔玛公司一直是美国国防部的一个主要承包商，并且在越南战争和1991年海湾战争期间就向军事部门提供靴子。它向70多个国家的多个单位提供产品。为了满足美国武装部队人员的需要，新开发推出了“波浪鞋底”靴。鞋底单元采用聚亚安酯(PU)，带“砍布雷尔”(cambrelle)顶衬的可取式鞋垫、三层Foamex隔热层、橡胶鞋底夹层、一个聚亚安酯软鞋底夹层和一个“波浪形”鞋外底。,NULL,NULL,NULL,NULL,奥塔玛公司,枪械与单兵,NULL,美国
+{'$oid': '5cc9327c831b973d657f1bc6'},NULL,,NULL,附件,NULL,GB2战斗突击靴,NULL,,NULL,NULL,NULL,NULL,GB Britton公司(英国，布里斯托尔),枪械与单兵,NULL,英国
+{'$oid': '5cc9327c831b973d657f1bc7'},NULL,,NULL,附件,NULL,4155丛林靴 ,NULL,为了满足美国武装部队人员的需要，新开发推出了“波浪鞋底”靴。鞋底单元采用聚亚安酯(PU)，带“砍布雷尔”(cambrelle)顶衬的可取式鞋垫、三层Foamex隔热层、橡胶鞋底夹层、一个聚亚安酯软鞋底夹层和一个“波浪形”鞋外底。,NULL,NULL,NULL,NULL,奥塔玛(Altama)鞋业公司(美国，乔治亚州),枪械与单兵,NULL,美国
+{'$oid': '5cc9327d831b973d657f1bc8'},NULL,,NULL,附件,NULL,Irvin-GQ公司低空备用伞,NULL,低空备用伞是一种低高度、配在胸前的备用装置，是与那些不能用于76米(250英尺)高度跳伞的军用降落伞配合使用的备份系统。该低空备用伞使用一个20块V形三角布、块组构成航空伞衣，飞行直径为6.2米。改善了开伞和低空使用所要求的更高膨胀速度。用部分故障或者高速“完全故障”的工作主伞对展开进行控制，以便实现成功开伞。使用冲击弹簧来帮助展开初始伞衣。与伞衣有微弱连接的拖动标有助于在低速展开时的释放。在高速情况下，快速释放是有害的，微弱连接断开，在伞衣的顶部留下四个完整的助力袋，在膨大时对齐伞衣，刹车带将伞衣的顶部气孔关闭这可以防止在低速膨胀阶段丢失压力，而在需要时打开气孔。伞衣外缘安装了边缘辅助绳素。这些绳索将每个传动绳连接至伞衣内的一点，以便在伞衣部分打开之前，位于外缘的传动点不会受到张力。这样可改善初始伞衣的膨胀，减小展开时的高度损失。,NULL,NULL,NULL,NULL,Irvin-GQ公司,枪械与单兵,NULL,英国
+{'$oid': '5cc9327d831b973d657f1bc9'},NULL,,NULL,附件,NULL,OGVN6夜视双目镜,NULL,这种光学系统装备了第二代微通道光放大器管，具有“自动亮度控制”和一个当视场的亮度超过一定水平时自动关断的系统。该仪器可用于夜间监视、海军演习、战场观察或者警察监视和巡逻。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,意大利
+{'$oid': '5cc9327e831b973d657f1bca'},NULL,,NULL,附件,NULL,泰利斯公司单目夜视镜,NULL,这种单目镜的设计旨在为一只眼提供夜视能力，而另一只眼不受影响。它是一种独特的提供高分辨率图像的混合系统。可采用手持方式，或装在头盔的面罩上。它与核、生化防护面罩兼容。旋转机构可以将该装置调整到任何一只眼上，或在不使用时保存起来。有一个用于近距离任务的红外照明器和一个高光传感器，该传感器可在强光环境下自动关断图像增强器。单目夜视镜与激光目标标记结合使用可用作武器的瞄准器。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,英国
+{'$oid': '5cc9327e831b973d657f1bcb'},NULL,,NULL,附件,NULL,伞兵空投包,NULL,伞兵空投包在设计上能够装载全部必要的装备，并满足伞兵部队的充分认证。,NULL,NULL,NULL,NULL,飞鹰工业公司,枪械与单兵,NULL,美国
+{'$oid': '5cc9327e831b973d657f1bcc'},NULL,,NULL,附件,NULL,“福克斯”AT,NULL,"
+“福克斯”AT传感器包括固定或者陀螺稳定的CCD和IR相机、FLIR(前视红外)(3微米～5微米或者8微米～12微米)、热分析仪、Linescan4000、VHF或者雷达干扰器和核生物化学探测器。另外可以选择气象探测装置，翼下最多可以携带四个这样的装置，使用降落伞投放，测量温度、气压和风速，帮助远程炮兵进行瞄准校正。可用弹射器或者压缩空气发射器发射，且可正常回收(无起落装置)。
+",NULL,NULL,NULL,NULL,EADS防务和通信系统公司，CAC系统(法国，La chapelle Vendomoise),枪械与单兵,NULL,法国
+{'$oid': '5cc9327e831b973d657f1bcd'},NULL,,NULL,附件,NULL,比利时光学与精密仪器公司全息夜视镜,NULL,采用全息光学元件(HOES)可使这些轻型HNV-1全息夜视护目镜(NVGS)具有使配戴者观察夜视影像和真实环境的能力。配戴该镜，配戴者总是能够获得真实世界的影像，不论在何种眩光和闪光条件下，仍然能够在夜间看到大面积的外部景物。融入了全息技术，执行任务的人员可在比老式护目镜能获取的更好的条件下在夜间执行任务。HNV-1护目镜适于执行任务的特种部队使用。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,比利时
+{'$oid': '5cc9327f831b973d657f1bce'},NULL,,NULL,附件,NULL,Portaguard手持式微波雷达地面监视系统,NULL,"
+
+",NULL,NULL,NULL,NULL,Wylam Defence Systems,枪械与单兵,NULL,英国
+{'$oid': '5cc9327f831b973d657f1bcf'},NULL,,NULL,附件,NULL,AN/PVS-7D GenⅢ夜视镜,NULL,"
+ITT工业夜视公司提供满足各个用户性能要求的带各种图像增强器管的AN/PVS-7D Gen III夜视镜。它能够允许个人在一年中最黑暗的夜晚执行非常关键的行动。该装置重量轻，符合人体工程学，适于长时间配戴。它可手持、头盔安装或头部系带安装。
+
+AN/PVS-7D具有Gen III管性能，提供最优的分辨率、高增益和接近红外的照片响应。快速释放杆可实现单手连接/分离、自动强光截止以保护图像增强器、“红外接通”指示器和瞬间红外切换。可选的附件包括：3倍和5倍放大透镜；易安装的指南针；红外光斑或者泛光镜。该装置使用通用AA电池，并具有低电压指示器。它装在一个携带方便的盒子中，盒子有背带和皮带夹子。还可提供环保型运输和存储用的盒子。
+",NULL,NULL,NULL,NULL,ITT工业夜视公司(美国),枪械与单兵,NULL,美国
+{'$oid': '5cc9327f831b973d657f1bd0'},NULL,,NULL,附件,NULL,比利时光学与精密仪器公司头戴式光学投射系统,NULL,这种“头戴式光学投射系统”(HOPROS)将视觉信息投射在观察者眼睛前部，同时保证不对环境影像造成干扰，因此将双手解放出来。技术员、工程师和医生常常需要按照说明书按步骤工作，“头戴式光学投射系统”将说明书投射在眼睛前面，不影响配戴者观察周围情况。“头戴式光学投射系统”的应用包括战场单兵的C41集成、现场行动信息(GPS位置、报告、指令等)的实时传递、敌方运动的在线更新、弹道分配、维护和物流甚至是远程手术。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,比利时
+{'$oid': '5cc93280831b973d657f1bd1'},NULL,,NULL,附件,NULL,空降攻击背包,NULL,"
+飞鹰公司空降攻击背包用于“要求严格”的作战行动中。
+",NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93280831b973d657f1bd2'},NULL,,NULL,附件,NULL,Norge公司军用衬衫,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,挪威
+{'$oid': '5cc93280831b973d657f1bd3'},NULL,,NULL,附件,NULL,泰利斯公司“松鸦”夜视镜,NULL,这是一种头戴式夜视系统，与激光目标标记器一起使用也可用作武器的瞄准工具。该夜视镜可配备第二代或第三代图像增强管。使用一个红外光源。可将这些夜视镜改成中距离或长距离监视装置(放大4.5倍)。使用泰利斯公司的Maxi—Kite适配器甚至可获得更长的距离。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,英国
+{'$oid': '5cc93280831b973d657f1bd4'},NULL,,NULL,附件,NULL,比利时光学与精密仪器公司红外线激光目标指示器,NULL,比利时光学与精密仪器公司红外线激光目标指示器适用于在夜间与小股武装进行近程战斗。这种指示器的设计能够使用户在低照度或全黑条件下精确地瞄准敌人而不被敌人发现。主要用于步枪、冲锋枪和个人便携式武器等常规的步兵武器上。与这些武器的轴线对齐。当用户使用武器上的遥控开关启动指示器时，发射的激光束将一个红外亮点准确地投射到武器瞄准的位置，即子弹药打到的目标位置。因此可不通过望远镜或者常用的机械式瞄准器而实现精确射击。据称可减轻长时间射击带来的眼部疲劳。可轻松进行射击，而且只有在使用夜视镜的情况下，才能看得见激光圆点。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,比利时
+{'$oid': '5cc93280831b973d657f1bd5'},NULL,,NULL,附件,NULL,CL-89,NULL,CL-89使用相机和红外线扫描系统，向前线现场指挥员提供半径为38海里(70公里)地域内的非实时视觉信息。主要要求是：操作和维护简单、在复杂尖端的敌方防空环境中具有较高的生存能力、能够全天候战术性地探测和记录大量敌方信息和武器的能力，提供精确的情报。系统必须是完全集成、可移动的，且不依赖外部服务，例如电源等。传感部分安装在机身的中低部位，位于燃料和油箱的前部。白天拍照侦察传感器是蔡斯KRb 8/24C照相机。夜间监视时，使用云顿201型IRLS。采用降落伞回收。,NULL,NULL,NULL,NULL,庞巴迪防务公司,枪械与单兵,NULL,加拿大
+{'$oid': '5cc93280831b973d657f1bd6'},NULL,,NULL,附件,NULL,ECW热靴,NULL,专利的“Tractor”鞋外底具有自清理能力，其设计具有很好的抓地性和稳定性，脚周围有9毫米厚的隔热层，可拆卸的热衬垫和鞋垫在极低的温度下也能为双脚提供保暖。鞋面使用织物层作进一步隔热，外部为 “科尔迪尤拉”(cordura)尼龙。,NULL,NULL,NULL,NULL,阿克顿国际公司 ,枪械与单兵,NULL,加拿大
+{'$oid': '5cc93280831b973d657f1bd7'},NULL,,NULL,附件,NULL,DPM伞兵罩衣,NULL,,NULL,NULL,NULL,NULL,斯尔弗曼公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93281831b973d657f1bd8'},NULL,,NULL,附件,NULL,阿克顿ECW衬里长筒靴(加拿大),NULL,这是发放给加拿大陆海空三军的一种用于“极冷天气”(ECW)的长靴，配有双层粗呢袜，具有透气作用的可取出式毛毡鞋垫和塑料鞋垫，均具有良好的隔热作用。这种长靴可以在最低-54°C(-65°F)的温度下使用。其外底能够使长靴配合滑雪板和雪鞋使用。内部聚氨脂涂层使150毫米(6英寸)的底部具有防水能力。长靴采用了一条长鞋带、一个D形环搭扣，保证了滑动配合，顶部的“防雪”鞋带可以防止进雪，保证暖空气的进入。,NULL,NULL,NULL,NULL,阿克顿国际公司（Acton International Inc）(加拿大，魁北克省),枪械与单兵,NULL,加拿大
+{'$oid': '5cc93281831b973d657f1bd9'},NULL,,NULL,附件,NULL,水兵作战背心,NULL,,NULL,NULL,NULL,NULL,艾科提斯公司(Arktis)  (英国，埃克塞特),枪械与单兵,NULL,英国
+{'$oid': '5cc93281831b973d657f1bda'},NULL,,NULL,附件,NULL,P1013外部露指手套,NULL,,NULL,NULL,NULL,NULL,Granqvists AB(瑞典，卡乐斯塔德),枪械与单兵,NULL,瑞典
+{'$oid': '5cc93281831b973d657f1bdb'},NULL,,NULL,附件,NULL,“野马”游泳救护员水母衣,NULL,,NULL,NULL,NULL,NULL,野马公司,枪械与单兵,NULL,加拿大
+{'$oid': '5cc93282831b973d657f1bdc'},NULL,,NULL,附件,NULL,突击队战术护目镜,NULL,这种护目镜采用聚合物框架，具有柔性且便于安装。大轮廓框架可提高对周围的观察能力，设计中不含泡沫塑料。透镜采用双聚碳酸酯设计，经过抗划伤和防雾处理。,NULL,NULL,470毫米,NULL,葆旎SAS,枪械与单兵,NULL,法国
+{'$oid': '5cc93282831b973d657f1bdd'},NULL,,NULL,附件,NULL,勃朗宁P302式防弹背心,NULL,,NULL,NULL,NULL,NULL,勃朗宁公司(比利时，赫尔斯塔尔),枪械与单兵,NULL,比利时
+{'$oid': '5cc93284831b973d657f1bde'},NULL,,NULL,附件,NULL,DPM防风罩衣,NULL,这款英国空军特种部队发放的罩衣是使用一种斜纹防水防风材料制作，具备快速干燥的能力。,NULL,NULL,NULL,NULL,斯尔弗曼公司,枪械与单兵,NULL,英国
+{'$oid': '5cc93284831b973d657f1bdf'},NULL,,NULL,附件,NULL,Helimun直升机驾驶员的夜视系统,NULL,Helimun直升机驾驶员夜视系统的视场为40度和60度。它的设计可使其很容易装在驾驶员的头盔上，主要在三方面进行了加强；XD-4成像增强器、各个瞳孔的调整以及更大程度地减轻眼疲劳。功率模块建在头盔内的后部。该系统可以装在许多飞行员头盔上。XD-4成像增强器提供高分辨率图像，并具有更高的光电阴极灵敏度、更高的信噪比、更严格的瑕疵规范，据制造商称，它具有比标准增强器更高的抗留痕迹的能力。Helimun与标准15毫米眼松弛目镜相比，能在更多眼部位置提供高成像质量，确保所有用户都有全40度和60度视场，简化了直接在每个眼的前面对中目镜的任务。此外，新的机构减小了单眼的晃动。,NULL,NULL,NULL,NULL,比利时光学与精密仪器公司,枪械与单兵,NULL,比利时
+{'$oid': '5cc93284831b973d657f1be0'},NULL,,NULL,附件,NULL,PSP M31突击背心(加拿大),NULL,,NULL,NULL,NULL,NULL,太平洋安全产品公司  (Pacific safetyProducts Inc)(加拿大),枪械与单兵,NULL,加拿大
+{'$oid': '5cc93284831b973d657f1be1'},NULL,,NULL,附件,NULL,特种作战防水背包,NULL,,NULL,NULL,NULL,NULL,Divex公司(英国),枪械与单兵,NULL,英国
+{'$oid': '5cc93285831b973d657f1be2'},NULL,,NULL,附件,NULL,特殊场合蛙人工具套件,NULL,,NULL,NULL,NULL,NULL,美国,枪械与单兵,NULL,美国
+{'$oid': '5cc93285831b973d657f1be3'},NULL,,NULL,附件,NULL,塔迪兰公司HF-2000 HF无线电系统,NULL,,NULL,NULL,NULL,NULL,塔迪兰通信公司(以色列),枪械与单兵,NULL,以色列
+{'$oid': '5cc93285831b973d657f1be4'},NULL,,NULL,附件,NULL,UGO白天和夜间护目镜,NULL,,NULL,NULL,NULL,NULL,泰利斯光学公司,枪械与单兵,NULL,法国
+{'$oid': '5cc93285831b973d657f1be5'},NULL,,NULL,附件,NULL,RM520/540无线收发机,NULL,RM500系列是为警察和安全部队、出租车和救护车等专业无线通信用户设计的新一代移动收发机。该系列无线电性能非常可靠、整体设计非常人性化，并提供高度安全的通信。可集成一个GPS接收器，因此可在图形显示器上自动定位台车。还带一个ERMES寻呼接收器和一个数字式应答/记录器。该系列移动收发机可使用UHF和VHF，可完全集成到大多数PMR和干线无线网络中。它们以最新的技术为基础，提供了诸如提高通信保密度的语音编码、通过内置调制解调器的数据通信、通过串行口和双控制协议，实现对PC的直接访问，使用PC对收发机进行编程，而软件升级为网络设计和将来的扩展提供了灵活性。,NULL,NULL,NULL,NULL,  萨基姆公司防御和安全分部(法国，巴黎),枪械与单兵,NULL,法国
+{'$oid': '5cc93285831b973d657f1be6'},NULL,,NULL,附件,NULL,VIGY10海军监视系统,NULL,,NULL,NULL,NULL,NULL,萨基姆公司,枪械与单兵,NULL,法国
+{'$oid': '5cc93285831b973d657f1be7'},NULL,,NULL,附件,NULL,马钶沙漠用靴,NULL,,NULL,NULL,NULL,NULL,马钶公司,枪械与单兵,NULL,法国
+{'$oid': '5cc93285831b973d657f1be8'},NULL,,NULL,附件,NULL,空降部队帆布背包,NULL,法国空降部队用于伪装的装备。,NULL,NULL,NULL,NULL,马钶公司,枪械与单兵,NULL,法国
+{'$oid': '5cc93286831b973d657f1be9'},NULL,,NULL,附件,NULL,军用袜,NULL,"
+ 
+",NULL,NULL,NULL,NULL,Christos J Kourtoglou公司,枪械与单兵,NULL,希腊
+{'$oid': '5cc93286831b973d657f1bea'},NULL,,NULL,附件,NULL,828式空降兵头盔,NULL,"
+空降828是一种高性能防弹系统，专为满足空降部队特殊要求而开发。抱头式壳体的设计可降低挂住绳索和缠绕的风险。适合“高跳低开”和“高跳高开”(HALO，HAHO)，即便处于卧姿射击位置时，也不会影响视力，重量轻且具有较高的防弹能力。
+",NULL,NULL,NULL,NULL,Schuberth Helme GmbH,枪械与单兵,NULL,德国
+{'$oid': '5cc93286831b973d657f1beb'},NULL,,3500,附件,NULL,MATIS MP手持式第三代热成像仪,NULL,MATIS MP是SAGEM MATIS系列第三代热成像仪中的一员，它基于最新一代工作于3～5微米波段的冷却设备。重量轻，外形紧凑，MATIS MP用于白天和夜间短或长距离的观察。,NULL,NULL,NULL,NULL,萨基姆公司,枪械与单兵,NULL,法国
+{'$oid': '5cc93286831b973d657f1bec'},NULL,,NULL,附件,NULL,EL/S-e8811车载战术视频接受终端,NULL,,NULL,NULL,NULL,NULL, 艾尔塔电子工业公司(以色列）,枪械与单兵,NULL,以色列
+{'$oid': '5cc93286831b973d657f1bed'},NULL,,NULL,附件,NULL,空降攻击背包,NULL,该承载背包专为从事秘密军事行动而设计，具有两个水平的压缩带，以减小负载的移动，简洁的外形可以减少发生挂扯的危险。,NULL,NULL,NULL,NULL,飞鹰工业公司(美国，密苏里州),枪械与单兵,NULL,美国
+{'$oid': '5cc93286831b973d657f1bee'},NULL,,NULL,附件,NULL,A-Ⅲ医疗背包,NULL,A-III医疗背包是一种中型无框架背包，打开后可以将医疗设备完全展示出来，以便于快速取用。,NULL,NULL,NULL,NULL,飞鹰工业公司(美国，密苏里州),枪械与单兵,NULL,美国
+{'$oid': '5cc93287831b973d657f1bef'},NULL,,NULL,附件,NULL,施玛篇头饰,NULL,施玛篇(shemagh)用户众多，自北极到沙漠的特种部队和其他人员均有佩带。承包商可从各种渠道购买。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93287831b973d657f1bf0'},NULL,,NULL,附件,NULL,END200型战斗武装袋,NULL,,NULL,NULL,NULL,NULL,Enfymatotexniki公司,枪械与单兵,NULL,希腊
+{'$oid': '5cc93287831b973d657f1bf1'},NULL,,NULL,附件,NULL,镁框架雪鞋,NULL,"
+这些雪鞋由与尼龙涂层钢缆系在一起的镁框架构成。捆绑物是25毫米的白色尼龙带，带有四个带扣调整器，将雪鞋与靴子连在一起。
+",NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93287831b973d657f1bf2'},NULL,,NULL,附件,NULL,环境袜子系列,NULL,这是一个多袜系列，它由Coolmax衬里袜和两个反毛绒和聚丙烯混合靴袜构成。衬里和外部袜子必须一起穿才能使系统起作用。Coolmax衬里通过毛细作用将潮气从脚部带走，使脚部保持干燥，同时也减小了细菌感染的危险。极端天气靴袜使用高密度毛绒制作，它为了承受最大负荷条件而设计并提供一流的隔离性能。全天候靴袜是亚极限条件的轻型袜。据制造商称，袜子系统的作用就是使在帆布包中需要带的袜子少些。所需要的是三双Coolmax衬袜和两双外袜。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93287831b973d657f1bf3'},NULL,,NULL,附件,NULL,小艇内部通信系统,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93287831b973d657f1bf4'},NULL,,NULL,附件,NULL,伞兵转换套件,NULL,“伞兵转换套件”是美军针对所有单兵个人防护系统型战斗头盔的标准发放套件。包括后部的泡沫颈部垫和汇集现有颚带的维持系带，以便进一步稳定头盔。集合很快，松开头盔后面的一个螺钉，集合衬垫和系带。保持带的活动端使用粘接搭扣与颚带相连。,NULL,NULL,NULL,NULL,PA特殊塑料产品公司(美国),枪械与单兵,NULL,美国
+{'$oid': '5cc93288831b973d657f1bf5'},NULL,,NULL,附件,NULL,免遭窃听的小型手持式无线电,NULL,,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93288831b973d657f1bf6'},NULL,,NULL,附件,NULL,"""美洲狮2000""安全无线电",NULL,"“美洲狮2000”的设计使其能够提供一种用于军事、准军事和民用的高水平安全通信网络。“美洲狮2000”安全无线电(英国)Cougar 2000 ""Safety Radio“美洲狮2000”安全无线电(1)和“美洲狮2000”网络无线电组合(2)基于各频道要求，功率输出在1.5～5W的范围内是可变的。",NULL,NULL,NULL,NULL,泰利斯通信公司(英国，克劳利）,枪械与单兵,NULL,英国
+{'$oid': '5cc93288831b973d657f1bf7'},NULL,,NULL,附件,NULL,Cougarnet通信系统,NULL,Cougarnet是一种工作于全FM频段的安全无线电系统。它由不同配置的“美洲狮”手持装置和Cougarnet基站组成。,NULL,NULL,NULL,NULL,泰利斯通信公司(英国，克劳利）,枪械与单兵,NULL,英国
+{'$oid': '5cc93288831b973d657f1bf8'},NULL,,NULL,附件,NULL,Secrette头戴式耳机,NULL,Secrette头戴式耳机为单耳机型头戴式耳机，提供给交战、安全和SWAT单位，有两种形式。咽喉麦克风有一个皮垫，用一个可调弹性分离带固定在颈部。整个头戴式耳机能够防水，并且被水浸湿后不受影响。,NULL,NULL,NULL,NULL,NULL,枪械与单兵,NULL,美国
+{'$oid': '5cc93288831b973d657f1bf9'},NULL,,NULL,附件,NULL,FBP手枪消音器,NULL,,NULL,NULL,NULL,NULL,鲁加-托梅公司(瑞士，史毕兹布),枪械与单兵,NULL,瑞士
+{'$oid': '5cc93288831b973d657f1bfa'},NULL,http://images.huanqiu.com/sarons/2013/11/bf64c12d3f9090bb292602cd768509bd.jpg,NULL,附件,35毫米,SOPS突击步枪消减器,NULL,,NULL,NULL,NULL,NULL,布鲁加—托梅公司(瑞士，史毕兹),枪械与单兵,NULL,瑞士
+{'$oid': '5cc93289831b973d657f1bfb'},NULL,,NULL,附件,5.56毫米,M4A1室内近距离作战（CQB）武器,NULL,"
+M4A1 CQB武器可以使用特种作战特殊规格M4A1附件套装(SOPMOD M4A1 Kit)，该套装由海军水面武器基地研制，其优点之一是适应性强。每个陆军“A”支队三套SOPMOD M4A1附件，每个“B”支队四套，每个海豹突击队排四套，每个特种战术小组三套。派发给美国陆军突击队和其他特种任务部队的是精选的若干附件而非一整套附件。
+",3.6千克,900发/分,838毫米,800米,柯尔特制造有限公司(美国，康涅狄格州),枪械与单兵,导气式，可选射击模式,美国
+{'$oid': '5cc93289831b973d657f1bfc'},NULL,http://images.huanqiu.com/sarons/2013/11/95a97e10559151a1f75a8238ce942a22.jpg,NULL,附件,小口径,奈特军械公司5.56毫米模块化武器系统,NULL,,NULL,NULL,NULL,NULL,奈特军械公司（美国，佛罗里达州）,枪械与单兵,NULL,美国
+{'$oid': '5cc93289831b973d657f1bfd'},NULL,,NULL,附件,NULL,MK23消音器,NULL,,NULL,NULL,NULL,NULL,耐特军械公(美国，福罗里达州),枪械与单兵,NULL,美国
+{'$oid': '5cc93289831b973d657f1bfe'},NULL,,NULL,附件,NULL,CT400突击通信系统,NULL,CT400突击通信系统由戴维斯公司通信系统公司(英国)设计和制造，是一种专型通信设备和音频附件，配合世界上最新型数字无线电系统工作。,NULL,NULL,NULL,NULL,戴维斯(Davies)工业通信公司(英国),枪械与单兵,NULL,英国

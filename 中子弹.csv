@@ -1,0 +1,7 @@
+大类,类型,名称,_id,图片,产国,关注度,研发单位,研制时间,弹长,全重,简介,弹径,装药类型
+爆炸物,中子弹,核电磁脉冲弹,{'$oid': '5cc93457831b973d657f25f0'},NULL,美国,(4分),NULL,NULL,NULL,NULL,NULL,NULL,NULL
+爆炸物,中子弹,增强X射线弹,{'$oid': '5cc93457831b973d657f25f1'},NULL,美国,NULL,劳伦斯·利弗莫尔研究所,1968年,NULL,NULL,NULL,NULL,NULL
+爆炸物,中子弹,XM-753中子炮弹,{'$oid': '5cc93457831b973d657f25f2'},NULL,美国,NULL,劳伦斯·利弗莫尔研究所,1975年,1090毫米,97.5千克,NULL,203毫米,1.1千吨TNT当量
+爆炸物,中子弹,核爆激励X射线激光器,{'$oid': '5cc93458831b973d657f25f3'},NULL,美国,NULL,NULL,20世纪八九十年代,NULL,NULL,NULL,NULL,0.01-1千吨TNT当量
+爆炸物,中子弹,冲击波弹,{'$oid': '5cc93458831b973d657f25f4'},NULL,美国,NULL,NULL,1980年,NULL,NULL,NULL,NULL,NULL
+爆炸物,中子弹,W70-3中子战斗部,{'$oid': '5cc93458831b973d657f25f5'},NULL,美国,NULL,NULL,1976年,NULL,NULL,NULL,NULL,2千吨TNT当量

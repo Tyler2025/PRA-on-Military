@@ -1,0 +1,253 @@
+ISO_3166_alpha2,ISO_3166_alpha3,ISO_3166_numeric,fips,Country,Capital,Area_in_km2,Population,Continent,ChineseName
+AD,AND,20,AN,Andorra,Andorra la Vella,468,"77,006",EU,安道尔
+AE,ARE,784,AE,United Arab Emirates,Abu Dhabi,"82,880.00","9,630,959",AS,阿拉伯联合酋长国
+AF,AFG,4,AF,Afghanistan,Kabul,"647,500.00","37,172,386",AS,阿富汗
+AG,ATG,28,AC,Antigua and Barbuda,St. John's,443,"96,286",NA,安提瓜和巴布达
+AI,AIA,660,AV,Anguilla,The Valley,102,"13,254",NA,安圭拉岛
+AL,ALB,8,AL,Albania,Tirana,"28,748.00","2,866,376",EU,阿尔巴尼亚
+AM,ARM,51,AM,Armenia,Yerevan,"29,800.00","2,951,776",AS,亚美尼亚
+AN,ANT,530,NT,Netherlands Antilles,Willemstad,960,"300,000",NA,荷属安的列斯群岛
+AO,AGO,24,AO,Angola,Luanda,"1,246,700.00","30,809,762",AF,安哥拉
+AQ,ATA,10,AY,Antarctica,NULL,"14,000,000.00",0,AN,南极洲
+AR,ARG,32,AR,Argentina,Buenos Aires,"2,766,890.00","44,494,502",SA,阿根廷
+AS,ASM,16,AQ,American Samoa,Pago Pago,199,"55,465",OC,美属萨摩亚
+AT,AUT,40,AU,Austria,Vienna,"83,858.00","8,847,037",EU,奥地利
+AU,AUS,36,AS,Australia,Canberra,"7,686,850.00","24,992,369",OC,澳大利亚
+AW,ABW,533,AA,Aruba,Oranjestad,193,"105,845",NA,阿鲁巴岛
+AX,ALA,248,NULL,?land,Mariehamn,"1,580.00","26,711",EU,奥兰群岛
+AZ,AZE,31,AJ,Azerbaijan,Baku,"86,600.00","9,942,334",AS,阿塞拜疆
+BA,BIH,70,BK,Bosnia and Herzegovina,Sarajevo,"51,129.00","3,323,929",EU,波斯尼亚和黑塞哥维那
+BB,BRB,52,BB,Barbados,Bridgetown,431,"286,641",NA,巴巴多斯
+BD,BGD,50,BG,Bangladesh,Dhaka,"144,000.00","161,356,039",AS,孟加拉国
+BE,BEL,56,BE,Belgium,Brussels,"30,510.00","11,422,068",EU,比利时
+BF,BFA,854,UV,Burkina Faso,Ouagadougou,"274,200.00","19,751,535",AF,布吉纳法索
+BG,BGR,100,BU,Bulgaria,Sofia,"110,910.00","7,000,039",EU,保加利亚
+BH,BHR,48,BA,Bahrain,Manama,665,"1,569,439",AS,巴林
+BI,BDI,108,BY,Burundi,Gitega,"27,830.00","11,175,378",AF,布隆迪
+BJ,BEN,204,BN,Benin,Porto-Novo,"112,620.00","11,485,048",AF,贝宁
+BL,BLM,652,TB,Saint Barthélemy,Gustavia,21,"8,450",NA,圣巴特尔米
+BM,BMU,60,BD,Bermuda,Hamilton,53,"63,968",NA,百慕大
+BN,BRN,96,BX,Brunei,Bandar Seri Begawan,"5,770.00","428,962",AS,文莱
+BO,BOL,68,BL,Bolivia,Sucre,"1,098,580.00","11,353,142",SA,玻利维亚
+BQ,BES,535,NULL,"Bonaire, Sint Eustatius, and Saba",NULL,328,"18,012",NA,荷兰加勒比区
+BR,BRA,76,BR,Brazil,Brasilia,"8,511,965.00","209,469,333",SA,巴西
+BS,BHS,44,BF,Bahamas,Nassau,"13,940.00","385,640",NA,巴哈马群岛
+BT,BTN,64,BT,Bhutan,Thimphu,"47,000.00","754,394",AS,不丹
+BV,BVT,74,BV,Bouvet Island,NULL,49,0,AN,布维岛
+BW,BWA,72,BC,Botswana,Gaborone,"600,370.00","2,254,126",AF,博茨瓦纳
+BY,BLR,112,BO,Belarus,Minsk,"207,600.00","9,485,386",EU,白俄罗斯
+BZ,BLZ,84,BH,Belize,Belmopan,"22,966.00","383,071",NA,伯利兹
+CA,CAN,124,CA,Canada,Ottawa,"9,984,670.00","37,058,856",NA,加拿大
+CC,CCK,166,CK,Cocos [Keeling] Islands,West Island,14,628,AS,科科斯基林群岛
+CD,COD,180,CG,DR Congo,Kinshasa,"2,345,410.00","84,068,091",AF,刚果民主共和国
+CF,CAF,140,CT,Central African Republic,Bangui,"622,984.00","4,666,377",AF,中非共和国
+CG,COG,178,CF,Congo Republic,Brazzaville,"342,000.00","5,244,363",AF,刚果共和国
+CH,CHE,756,SZ,Switzerland,Bern,"41,290.00","8,516,543",EU,瑞士
+CI,CIV,384,IV,Ivory Coast,Yamoussoukro,"322,460.00","25,069,229",AF,象牙海岸
+CK,COK,184,CW,Cook Islands,Avarua,240,"21,388",OC,库克群岛
+CL,CHL,152,CI,Chile,Santiago,"756,950.00","18,729,160",SA,智利
+CM,CMR,120,CM,Cameroon,Yaounde,"475,440.00","25,216,237",AF,喀麦隆
+CN,CHN,156,CH,China,Beijing,"9,596,960.00","1,392,730,000",AS,中国
+CO,COL,170,CO,Colombia,Bogota,"1,138,910.00","49,648,685",SA,哥伦比亚
+CR,CRI,188,CS,Costa Rica,San Jose,"51,100.00","4,999,441",NA,哥斯达黎加
+CS,SCG,891,YI,Serbia and Montenegro,Belgrade,"102,350.00","10,829,175",EU,塞尔维亚和黑山
+CU,CUB,192,CU,Cuba,Havana,"110,860.00","11,338,138",NA,古巴
+CV,CPV,132,CV,Cabo Verde,Praia,"4,033.00","543,767",AF,佛得角共和国
+CW,CUW,531,UC,Cura?ao,Willemstad,444,"159,849",NA,库拉索
+CX,CXR,162,KT,Christmas Island,Flying Fish Cove,135,"1,500",OC,圣诞岛
+CY,CYP,196,CY,Cyprus,Nicosia,"9,250.00","1,189,265",EU,塞浦路斯
+CZ,CZE,203,EZ,Czechia,Prague,"78,866.00","10,625,695",EU,捷克
+DE,DEU,276,GM,Germany,Berlin,"357,021.00","82,927,922",EU,德国
+DJ,DJI,262,DJ,Djibouti,Djibouti,"23,000.00","958,920",AF,吉布提
+DK,DNK,208,DA,Denmark,Copenhagen,"43,094.00","5,797,446",EU,丹麦
+DM,DMA,212,DO,Dominica,Roseau,754,"71,625",NA,多米尼加
+DO,DOM,214,DR,Dominican Republic,Santo Domingo,"48,730.00","10,627,165",NA,多米尼加共和国
+DZ,DZA,12,AG,Algeria,Algiers,"2,381,740.00","42,228,429",AF,阿尔及利亚
+EC,ECU,218,EC,Ecuador,Quito,"283,560.00","17,084,357",SA,厄瓜多尔
+EE,EST,233,EN,Estonia,Tallinn,"45,226.00","1,320,884",EU,爱沙尼亚
+EG,EGY,818,EG,Egypt,Cairo,"1,001,450.00","98,423,595",AF,埃及
+EH,ESH,732,WI,Western Sahara,El-Aaiun,"266,000.00","273,008",AF,西撒哈拉
+ER,ERI,232,ER,Eritrea,Asmara,"121,320.00",0,AF,厄立特里亚
+ES,ESP,724,SP,Spain,Madrid,"504,782.00","46,723,749",EU,西班牙
+ET,ETH,231,ET,Ethiopia,Addis Ababa,"1,127,127.00","109,224,559",AF,埃塞俄比亚
+FI,FIN,246,FI,Finland,Helsinki,"337,030.00","5,518,050",EU,芬兰
+FJ,FJI,242,FJ,Fiji,Suva,"18,270.00","883,483",OC,斐济
+FK,FLK,238,FK,Falkland Islands,Stanley,"12,173.00","2,638",SA,福克兰群岛
+FM,FSM,583,FM,Micronesia,Palikir,702,"112,640",OC,密克罗尼西亚
+FO,FRO,234,FO,Faroe Islands,Torshavn,"1,399.00","48,497",EU,法罗群岛
+FR,FRA,250,FR,France,Paris,"547,030.00","66,987,244",EU,法国
+GA,GAB,266,GB,Gabon,Libreville,"267,667.00","2,119,275",AF,加蓬
+GB,GBR,826,UK,United Kingdom,London,"244,820.00","66,488,991",EU,联合王国
+GD,GRD,308,GJ,Grenada,St. George's,344,"111,454",NA,格林纳达
+GE,GEO,268,GG,Georgia,Tbilisi,"69,700.00","3,731,000",AS,乔治亚州
+GF,GUF,254,FG,French Guiana,Cayenne,"91,000.00","195,506",SA,法属圭亚那
+GG,GGY,831,GK,Guernsey,St Peter Port,78,"65,228",EU,格恩西岛
+GH,GHA,288,GH,Ghana,Accra,"239,460.00","29,767,108",AF,加纳
+GI,GIB,292,GI,Gibraltar,Gibraltar,6.5,"33,718",EU,直布罗陀
+GL,GRL,304,GL,Greenland,Nuuk,"2,166,086.00","56,025",NA,格陵兰岛
+GM,GMB,270,GA,Gambia,Banjul,"11,300.00","2,280,102",AF,冈比亚
+GN,GIN,324,GV,Guinea,Conakry,"245,857.00","12,414,318",AF,几内亚
+GP,GLP,312,GP,Guadeloupe,Basse-Terre,"1,780.00","443,000",NA,瓜德罗普岛
+GQ,GNQ,226,EK,Equatorial Guinea,Malabo,"28,051.00","1,308,974",AF,赤道几内亚
+GR,GRC,300,GR,Greece,Athens,"131,940.00","10,727,668",EU,希腊
+GS,SGS,239,SX,South Georgia and South Sandwich Islands,Grytviken,"3,903.00",30,AN,南乔治亚岛和南桑威奇群岛
+GT,GTM,320,GT,Guatemala,Guatemala City,"108,890.00","17,247,807",NA,危地马拉
+GU,GUM,316,GQ,Guam,Hagatna,549,"165,768",OC,关岛
+GW,GNB,624,PU,Guinea-Bissau,Bissau,"36,120.00","1,874,309",AF,几内亚比绍
+GY,GUY,328,GY,Guyana,Georgetown,"214,970.00","779,004",SA,圭亚那
+HK,HKG,344,HK,Hong Kong,Hong Kong,"1,092.00","7,451,000",AS,香港
+HM,HMD,334,HM,Heard Island and McDonald Islands,NULL,412,0,AN,听到岛和麦当劳的岛屿
+HN,HND,340,HO,Honduras,Tegucigalpa,"112,090.00","9,587,522",NA,洪都拉斯
+HR,HRV,191,HR,Croatia,Zagreb,"56,542.00","4,089,400",EU,克罗地亚
+HT,HTI,332,HA,Haiti,Port-au-Prince,"27,750.00","11,123,176",NA,海地
+HU,HUN,348,HU,Hungary,Budapest,"93,030.00","9,768,785",EU,匈牙利
+ID,IDN,360,ID,Indonesia,Jakarta,"1,919,440.00","267,663,435",AS,印尼
+IE,IRL,372,EI,Ireland,Dublin,"70,280.00","4,853,506",EU,爱尔兰
+IL,ISR,376,IS,Israel,Jerusalem,"20,770.00","8,883,800",AS,以色列
+IM,IMN,833,IM,Isle of Man,Douglas,572,"84,077",EU,英国属地曼岛
+IN,IND,356,IN,India,New Delhi,"3,287,590.00","1,352,617,328",AS,印度
+IO,IOT,86,IO,British Indian Ocean Territory,Diego Garcia,60,"4,000",AS,英属印度洋领地
+IQ,IRQ,368,IZ,Iraq,Baghdad,"437,072.00","38,433,600",AS,伊拉克
+IR,IRN,364,IR,Iran,Tehran,"1,648,000.00","81,800,269",AS,伊朗
+IS,ISL,352,IC,Iceland,Reykjavik,"103,000.00","353,574",EU,冰岛
+IT,ITA,380,IT,Italy,Rome,"301,230.00","60,431,283",EU,意大利
+JE,JEY,832,JE,Jersey,Saint Helier,116,"90,812",EU,泽西岛
+JM,JAM,388,JM,Jamaica,Kingston,"10,991.00","2,934,855",NA,牙买加
+JO,JOR,400,JO,Jordan,Amman,"92,300.00","9,956,011",AS,约旦
+JP,JPN,392,JA,Japan,Tokyo,"377,835.00","126,529,100",AS,日本
+KE,KEN,404,KE,Kenya,Nairobi,"582,650.00","51,393,010",AF,肯尼亚
+KG,KGZ,417,KG,Kyrgyzstan,Bishkek,"198,500.00","6,315,800",AS,吉尔吉斯斯坦
+KH,KHM,116,CB,Cambodia,Phnom Penh,"181,040.00","16,249,798",AS,柬埔寨
+KI,KIR,296,KR,Kiribati,Tarawa,811,"115,847",OC,基里巴斯
+KM,COM,174,CN,Comoros,Moroni,"2,170.00","832,322",AF,科摩罗
+KN,KNA,659,SC,St Kitts and Nevis,Basseterre,261,"52,441",NA,圣基茨和尼维斯
+KP,PRK,408,KN,North Korea,Pyongyang,"120,540.00","25,549,819",AS,朝鲜
+KR,KOR,410,KS,South Korea,Seoul,"98,480.00","51,635,256",AS,韩国
+KW,KWT,414,KU,Kuwait,Kuwait City,"17,820.00","4,137,309",AS,科威特
+KY,CYM,136,CJ,Cayman Islands,George Town,262,"64,174",NA,开曼群岛
+KZ,KAZ,398,KZ,Kazakhstan,Nur-Sultan,"2,717,300.00","18,276,499",AS,哈萨克斯坦
+LA,LAO,418,LA,Laos,Vientiane,"236,800.00","7,061,507",AS,老挝
+LB,LBN,422,LE,Lebanon,Beirut,"10,400.00","6,848,925",AS,黎巴嫩
+LC,LCA,662,ST,Saint Lucia,Castries,616,"181,889",NA,圣卢西亚岛
+LI,LIE,438,LS,Liechtenstein,Vaduz,160,"37,910",EU,列支敦斯登
+LK,LKA,144,CE,Sri Lanka,Colombo,"65,610.00","21,670,000",AS,斯里兰卡
+LR,LBR,430,LI,Liberia,Monrovia,"111,370.00","4,818,977",AF,利比里亚
+LS,LSO,426,LT,Lesotho,Maseru,"30,355.00","2,108,132",AF,莱索托王国
+LT,LTU,440,LH,Lithuania,Vilnius,"65,200.00","2,789,533",EU,立陶宛
+LU,LUX,442,LU,Luxembourg,Luxembourg,"2,586.00","607,728",EU,卢森堡
+LV,LVA,428,LG,Latvia,Riga,"64,589.00","1,926,542",EU,拉脱维亚
+LY,LBY,434,LY,Libya,Tripoli,"1,759,540.00","6,678,567",AF,利比亚
+MA,MAR,504,MO,Morocco,Rabat,"446,550.00","36,029,138",AF,摩洛哥
+MC,MCO,492,MN,Monaco,Monaco,1.9,"38,682",EU,摩纳哥
+MD,MDA,498,MD,Moldova,Chisinau,"33,843.00","3,545,883",EU,摩尔多瓦
+ME,MNE,499,MJ,Montenegro,Podgorica,"14,026.00","622,345",EU,黑山共和国
+MF,MAF,663,RN,Saint Martin,Marigot,53,"37,264",NA,圣马丁
+MG,MDG,450,MA,Madagascar,Antananarivo,"587,040.00","26,262,368",AF,马达加斯加
+MH,MHL,584,RM,Marshall Islands,Majuro,181.3,"58,413",OC,马绍尔群岛
+MK,MKD,807,MK,North Macedonia,Skopje,"25,333.00","2,082,958",EU,北马其顿
+ML,MLI,466,ML,Mali,Bamako,"1,240,000.00","19,077,690",AF,马里
+MM,MMR,104,BM,Myanmar,Nay Pyi Taw,"678,500.00","53,708,395",AS,缅甸
+MN,MNG,496,MG,Mongolia,Ulaanbaatar,"1,565,000.00","3,170,208",AS,蒙古
+MO,MAC,446,MC,Macao,Macao,254,"631,636",AS,澳门
+MP,MNP,580,CQ,Northern Mariana Islands,Saipan,477,"56,882",OC,北马里亚纳群岛
+MQ,MTQ,474,MB,Martinique,Fort-de-France,"1,100.00","432,900",NA,马提尼克岛
+MR,MRT,478,MR,Mauritania,Nouakchott,"1,030,700.00","4,403,319",AF,毛利塔尼亚
+MS,MSR,500,MH,Montserrat,Plymouth,102,"9,341",NA,蒙特塞拉特
+MT,MLT,470,MT,Malta,Valletta,316,"483,530",EU,马耳他
+MU,MUS,480,MP,Mauritius,Port Louis,"2,040.00","1,265,303",AF,毛里求斯
+MV,MDV,462,MV,Maldives,Male,300,"515,696",AS,马尔代夫
+MW,MWI,454,MI,Malawi,Lilongwe,"118,480.00","17,563,749",AF,马拉维
+MX,MEX,484,MX,Mexico,Mexico City,"1,972,550.00","126,190,788",NA,墨西哥
+MY,MYS,458,MY,Malaysia,Kuala Lumpur,"329,750.00","31,528,585",AS,马来西亚
+MZ,MOZ,508,MZ,Mozambique,Maputo,"801,590.00","29,495,962",AF,莫桑比克
+NA,NAM,516,WA,Namibia,Windhoek,"825,418.00","2,448,255",AF,纳米比亚
+NC,NCL,540,NC,New Caledonia,Noumea,"19,060.00","284,060",OC,新喀里多尼亚
+NE,NER,562,NG,Niger,Niamey,"1,267,000.00","22,442,948",AF,尼日尔
+NF,NFK,574,NF,Norfolk Island,Kingston,34.6,"1,828",OC,诺福克岛
+NG,NGA,566,NI,Nigeria,Abuja,"923,768.00","195,874,740",AF,尼日利亚
+NI,NIC,558,NU,Nicaragua,Managua,"129,494.00","6,465,513",NA,尼加拉瓜
+NL,NLD,528,NL,Netherlands,Amsterdam,"41,526.00","17,231,017",EU,荷兰
+NO,NOR,578,NO,Norway,Oslo,"324,220.00","5,314,336",EU,挪威
+NP,NPL,524,NP,Nepal,Kathmandu,"140,800.00","28,087,871",AS,尼泊尔
+NR,NRU,520,NR,Nauru,Yaren,21,"12,704",OC,瑙鲁
+NU,NIU,570,NE,Niue,Alofi,260,"2,166",OC,纽埃岛
+NZ,NZL,554,NZ,New Zealand,Wellington,"268,680.00","4,885,500",OC,新西兰
+OM,OMN,512,MU,Oman,Muscat,"212,460.00","4,829,483",AS,阿曼
+PA,PAN,591,PM,Panama,Panama City,"78,200.00","4,176,873",NA,巴拿马
+PE,PER,604,PE,Peru,Lima,"1,285,220.00","31,989,256",SA,秘鲁
+PF,PYF,258,FP,French Polynesia,Papeete,"4,167.00","277,679",OC,法属波利尼西亚
+PG,PNG,598,PP,Papua New Guinea,Port Moresby,"462,840.00","8,606,316",OC,巴布新几内亚
+PH,PHL,608,RP,Philippines,Manila,"300,000.00","106,651,922",AS,菲律宾
+PK,PAK,586,PK,Pakistan,Islamabad,"803,940.00","212,215,030",AS,巴基斯坦
+PL,POL,616,PL,Poland,Warsaw,"312,685.00","37,978,548",EU,波兰
+PM,SPM,666,SB,Saint Pierre and Miquelon,Saint-Pierre,242,"7,012",NA,圣皮埃尔和密克隆群岛
+PN,PCN,612,PC,Pitcairn Islands,Adamstown,47,46,OC,皮特克恩岛
+PR,PRI,630,RQ,Puerto Rico,San Juan,"9,104.00","3,195,153",NA,波多黎各 
+PS,PSE,275,WE,Palestine,East Jerusalem,"5,970.00","4,569,087",AS,巴勒斯坦
+PT,PRT,620,PO,Portugal,Lisbon,"92,391.00","10,281,762",EU,葡萄牙
+PW,PLW,585,PS,Palau,Melekeok,458,"17,907",OC,帕劳
+PY,PRY,600,PA,Paraguay,Asuncion,"406,750.00","6,956,071",SA,巴拉圭
+QA,QAT,634,QA,Qatar,Doha,"11,437.00","2,781,677",AS,卡塔尔
+RE,REU,638,RE,Réunion,Saint-Denis,"2,517.00","776,948",AF,留尼汪岛
+RO,ROU,642,RO,Romania,Bucharest,"237,500.00","19,473,936",EU,罗马尼亚
+RS,SRB,688,RI,Serbia,Belgrade,"88,361.00","6,982,084",EU,塞尔维亚
+RU,RUS,643,RS,Russia,Moscow,"17,100,000.00","144,478,050",EU,俄罗斯
+RW,RWA,646,RW,Rwanda,Kigali,"26,338.00","12,301,939",AF,卢旺达
+SA,SAU,682,SA,Saudi Arabia,Riyadh,"1,960,582.00","33,699,947",AS,沙特阿拉伯
+SB,SLB,90,BP,Solomon Islands,Honiara,"28,450.00","652,858",OC,所罗门群岛
+SC,SYC,690,SE,Seychelles,Victoria,455,"96,762",AF,塞舌尔
+SD,SDN,729,SU,Sudan,Khartoum,"1,861,484.00","41,801,533",AF,苏丹
+SE,SWE,752,SW,Sweden,Stockholm,"449,964.00","10,183,175",EU,瑞典
+SG,SGP,702,SN,Singapore,Singapore,692.7,"5,638,676",AS,新加坡
+SH,SHN,654,SH,Saint Helena,Jamestown,410,"7,460",AF,圣赫勒拿岛
+SI,SVN,705,SI,Slovenia,Ljubljana,"20,273.00","2,067,372",EU,斯洛文尼亚
+SJ,SJM,744,SV,Svalbard and Jan Mayen,Longyearbyen,"62,049.00","2,550",EU,斯瓦尔巴群岛和扬马延岛
+SK,SVK,703,LO,Slovakia,Bratislava,"48,845.00","5,447,011",EU,斯洛伐克
+SL,SLE,694,SL,Sierra Leone,Freetown,"71,740.00","7,650,154",AF,塞拉利昂
+SM,SMR,674,SM,San Marino,San Marino,61.2,"33,785",EU,圣马力诺
+SN,SEN,686,SG,Senegal,Dakar,"196,190.00","15,854,360",AF,塞内加尔
+SO,SOM,706,SO,Somalia,Mogadishu,"637,657.00","15,008,154",AF,索马里
+SR,SUR,740,NS,Suriname,Paramaribo,"163,270.00","575,991",SA,苏里南
+SS,SSD,728,OD,South Sudan,Juba,"644,329.00","8,260,490",AF,南苏丹
+ST,STP,678,TP,S?o Tomé and Príncipe,Sao Tome,"1,001.00","197,700",AF,圣多美和普林西比
+SV,SLV,222,ES,El Salvador,San Salvador,"21,040.00","6,420,744",NA,萨尔瓦多
+SX,SXM,534,NN,Sint Maarten,Philipsburg,21,"40,654",NA,圣马丁岛
+SY,SYR,760,SY,Syria,Damascus,"185,180.00","16,906,283",AS,叙利亚
+SZ,SWZ,748,WZ,Eswatini,Mbabane,"17,363.00","1,136,191",AF,斯威士兰
+TC,TCA,796,TK,Turks and Caicos Islands,Cockburn Town,430,"37,665",NA,特克斯和凯科斯群岛
+TD,TCD,148,CD,Chad,N'Djamena,"1,284,000.00","15,477,751",AF,乍得
+TF,ATF,260,FS,French Southern Territories,Port-aux-Francais,"7,829.00",140,AN,法国南部地区
+TG,TGO,768,TO,Togo,Lome,"56,785.00","7,889,094",AF,多哥
+TH,THA,764,TH,Thailand,Bangkok,"514,000.00","69,428,524",AS,泰国
+TJ,TJK,762,TI,Tajikistan,Dushanbe,"143,100.00","9,100,837",AS,塔吉克斯坦
+TK,TKL,772,TL,Tokelau,NULL,10,"1,466",OC,托克劳
+TL,TLS,626,TT,Timor-Leste,Dili,"15,007.00","1,267,972",OC,东帝汶
+TM,TKM,795,TX,Turkmenistan,Ashgabat,"488,100.00","5,850,908",AS,土库曼斯坦
+TN,TUN,788,TS,Tunisia,Tunis,"163,610.00","11,565,204",AF,突尼斯
+TO,TON,776,TN,Tonga,Nuku'alofa,748,"103,197",OC,汤加
+TR,TUR,792,TU,Turkey,Ankara,"780,580.00","82,319,724",AS,土耳其
+TT,TTO,780,TD,Trinidad and Tobago,Port of Spain,"5,128.00","1,389,858",NA,特立尼达和多巴哥
+TV,TUV,798,TV,Tuvalu,Funafuti,26,"11,508",OC,图瓦卢
+TW,TWN,158,TW,Taiwan,Taipei,"35,980.00","22,894,384",AS,台湾
+TZ,TZA,834,TZ,Tanzania,Dodoma,"945,087.00","56,318,348",AF,坦桑尼亚
+UA,UKR,804,UP,Ukraine,Kyiv,"603,700.00","44,622,516",EU,乌克兰
+UG,UGA,800,UG,Uganda,Kampala,"236,040.00","42,723,139",AF,乌干达
+UM,UMI,581,NULL,U.S. Minor Outlying Islands,NULL,0,0,OC,美国小离岛
+US,USA,840,US,United States,Washington,"9,629,091.00","327,167,434",NA,美国
+UY,URY,858,UY,Uruguay,Montevideo,"176,220.00","3,449,299",SA,乌拉圭
+UZ,UZB,860,UZ,Uzbekistan,Tashkent,"447,400.00","32,955,400",AS,乌兹别克斯坦
+VA,VAT,336,VT,Vatican City,Vatican City,0.4,921,EU,梵蒂冈城
+VC,VCT,670,VC,St Vincent and Grenadines,Kingstown,389,"110,211",NA,圣文森特和格林纳丁斯群岛
+VE,VEN,862,VE,Venezuela,Caracas,"912,050.00","28,870,195",SA,委内瑞拉
+VG,VGB,92,VI,British Virgin Islands,Road Town,153,"29,802",NA,英属维尔京群岛
+VI,VIR,850,VQ,U.S. Virgin Islands,Charlotte Amalie,352,"106,977",NA,美属维尔京群岛
+VN,VNM,704,VM,Vietnam,Hanoi,"329,560.00","95,540,395",AS,越南
+VU,VUT,548,NH,Vanuatu,Port Vila,"12,200.00","292,680",OC,瓦努阿图
+WF,WLF,876,WF,Wallis and Futuna,Mata Utu,274,"16,025",OC,瓦利斯群岛和富图纳群岛
+WS,WSM,882,WS,Samoa,Apia,"2,944.00","196,130",OC,萨摩亚
+XK,XKX,0,KV,Kosovo,Pristina,"10,908.00","1,845,300",EU,科索沃
+YE,YEM,887,YM,Yemen,Sanaa,"527,970.00","28,498,687",AS,也门
+YT,MYT,175,MF,Mayotte,Mamoudzou,374,"159,042",AF,马约特岛
+ZA,ZAF,710,SF,South Africa,Pretoria,"1,219,912.00","57,779,622",AF,南非
+ZM,ZMB,894,ZA,Zambia,Lusaka,"752,614.00","17,351,822",AF,赞比亚
+ZW,ZWE,716,ZI,Zimbabwe,Harare,"390,580.00","14,439,018",AF,津巴布韦
