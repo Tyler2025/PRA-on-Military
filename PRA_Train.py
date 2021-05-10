@@ -9,14 +9,12 @@ from itertools import combinations,permutations
 
 
 Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='neo4j')
-#relations = Military.call.db.relationshipTypes()
-    #print(Military.apoc.rel.startNode(record))
-#print(dir(Military.call))
+
 class PRA_Model():
     """
     PRA算法模型类
     """
-    def __init__(self,Graph,relation_num=2,predicted_relationship=['belong','Person','Country']):
+    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','Actor','Genre']):
         """
         初始化
         predicted_relationship 为列表[预测的关系名，头节点，尾节点]
@@ -33,17 +31,20 @@ class PRA_Model():
         mode即寻找符合关系路径的模式,permutions为全排列模式
         """
         new_path = []
+        paths = []
         if mode == 'permutions':
             relations = self.Graph.call.db.relationshipTypes().data()#返回所有关系类型,列表返回
-            paths = list(permutations(relations,self.relation_num))#对关系全排列
+            per_num = 2
+            while per_num <= self.relation_num:
+                paths = paths+list(permutations(relations,per_num))
+                per_num += 1
             for path in paths:
-                if (self.Graph.evaluate( 'MATCH ()-[r:'+path[0]['relationshipType']+']->() RETURN labels(startNode(r))')[0] == self.predicted_relation[1]) and (self.Graph.evaluate( 'MATCH ()-[r:'+path[-1]['relationshipType']+']->() RETURN labels(endNode(r))')[0] == self.predicted_relation[2]):
+                if (self.predicted_relation[1] in self.Graph.evaluate( 'MATCH ()-[r:'+path[0]['relationshipType']+']->() RETURN labels(startNode(r))')) and (self.predicted_relation[2] in self.Graph.evaluate( 'MATCH ()-[r:'+path[-1]['relationshipType']+']->() RETURN labels(endNode(r))')):
                     new_path.append(path)
             return new_path
         else:
             print('Please input the mode')
-            #print(new_path)
-            #print('new_path'+str(len(new_path)))
+
 
     def compute_feature(self,path,fromnode,tonode,direction=1):
         """
@@ -60,7 +61,7 @@ class PRA_Model():
         hspe = 0 #the path feature value
         if direction == 0:#注意正向迭代迭代
             if len(path)==1:
-                query = "MATCH (N),(M)-[r:"+path[0]['relationship']+"]->(tar)"
+                query = "MATCH (N),(M)-[r:"+path[0]['relationshipType']+"]->(tar)"
                 print()
                 if self.Graph.run(query).data()[0]=="true":
                     hspe = 1/n
@@ -79,23 +80,23 @@ class PRA_Model():
             #    break
         elif direction == 1:#注意反向迭代
             if length == 1:#关系路径长度只剩1
-                query = "MATCH (N),(M)-[r:"+path[0]['relationship']+"]->(tar) WHERE id(N)="+str(tonode)+"AND id(M)="+str(fromnode)+"WITH N,[tar] AS target RETURN N IN target"
+                query = "MATCH (N),(M)-[r:"+path[0]['relationshipType']+"]->(tar) WHERE id(N)="+str(tonode)+"AND id(M)="+str(fromnode)+"WITH N,collect(tar) AS target RETURN N IN target"
                 data = self.Graph.run(query).data()
                 if not data:
                     hspe = 0
                 elif data[0]['N IN target']==True:#如果到节点与从节点通过关系链接的话
-                    query_end = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
+                    query_end = "MATCH (M)-[r:"+path[0]['relationshipType']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
                     hspe = 1/self.Graph.run(query_end).data()[0]['count(N)']
                 else:
                     hspe = 0
                 return hspe
             else:
-                query_start = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
+                query_start = "MATCH (M)-[r:"+path[0]['relationshipType']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
                 nodes_count = self.Graph.run(query_start).data()[0]['count(N)']
                 if nodes_count == 0:
                     return 0
                 else:
-                    query_middle = "MATCH (M)-[r:"+path[0]['relationship']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN id(N)"
+                    query_middle = "MATCH (M)-[r:"+path[0]['relationshipType']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN id(N)"
                     nodes = self.Graph.run(query_middle).data()
                     for entity in nodes:
                         hspe += (1/nodes_count) * self.compute_feature(path[1:],entity['id(N)'],tonode)
@@ -110,5 +111,5 @@ class PRA_Model():
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
-    #PRA.find_paths(mode='permutions')
-    print('path_feature:',PRA.compute_feature(path=[{'relationship':'HAS'},{'relationship':'ASSIGNED_TO'}],fromnode=123,tonode=133))
+    paths = PRA.find_paths(mode='permutions')
+    print('path_feature:',PRA.compute_feature(path = paths[0],fromnode=9836,tonode=6))
