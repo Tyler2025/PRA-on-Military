@@ -2,11 +2,16 @@
 '''
 为PRA算法训练逻辑回归模型
 '''
-#import tensorflow as tf
 import numpy as np
+import pandas as pd
 from py2neo import Graph 
 from itertools import combinations,permutations
-
+from collections import OrderedDict
+from sklearn.model_selection  import train_test_split
+from sklearn.linear_model import LogisticRegression
+import joblib
+import time
+#import matplotlib.pyplot as plt
 
 Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='neo4j')
 
@@ -24,7 +29,7 @@ class PRA_Model():
         self.predicted_relation = predicted_relationship
         self.relation_num = relation_num
         self.Graph = Graph
-
+        self.Model = 0
     def find_paths(self,mode):
         """
         找出符合关系的所有路径 
@@ -90,26 +95,96 @@ class PRA_Model():
                 else:
                     hspe = 0
                 return hspe
-            else:
+            else:#关系路径长度大于1
                 query_start = "MATCH (M)-[r:"+path[0]['relationshipType']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN count(N)"
-                nodes_count = self.Graph.run(query_start).data()[0]['count(N)']
+                nodes_count = self.Graph.run(query_start).data()[0]['count(N)']#首先找出从节点通过关系0链接的节点数
                 if nodes_count == 0:
                     return 0
                 else:
                     query_middle = "MATCH (M)-[r:"+path[0]['relationshipType']+"]->(N) WHERE id(M)="+str(fromnode)+"RETURN id(N)"
-                    nodes = self.Graph.run(query_middle).data()
+                    nodes = self.Graph.run(query_middle).data()#找出链接的节点
                     for entity in nodes:
                         hspe += (1/nodes_count) * self.compute_feature(path[1:],entity['id(N)'],tonode)
                     return hspe
         return hspe
 
-    def train(self):
-        """训练"""
+    def data_construt(self,paths):
+        """构建训练集与测试集数据"""
+        querysids = "MATCH (m:"+self.predicted_relation[1]+") WITH id(m) AS sid LIMIT 10 RETURN collect(sid) as sids"#找出路径首位节点id
+        sids = self.Graph.run(querysids).data()[0]['sids']
+        querytids = "MATCH (m:"+self.predicted_relation[2]+") WITH id(m) AS tid LIMIT 10 RETURN collect(tid) as tids"
+        tids = self.Graph.run(querytids).data()[0]['tids']
+        node_pairs = [0]*len(sids)*len(tids)
+        i = 0
+        for sid in sids:#得到所有的节点对组合
+            for tid in tids:
+                node_pairs[i] = [sid,tid]
+                i += 1
+        i = 0
+        feature_matrice = [0]*len(paths)
+        node_pair_feature = []
+        labels = []
+        data = {}
+        t1 = time.clock()
+        for path in paths:#计算对应节点对的路径特征向量
+            for node_pair in node_pairs:
+                path_feature = self.compute_feature(path,node_pair[0],node_pair[1])#计算路径特征值
+                if i == 0:
+                    if path_feature == 0:#判断关系标签,只运行一遍
+                        labels = labels + [0]
+                    else:
+                        labels = labels + [1]
+                node_pair_feature = node_pair_feature + [path_feature]
+            feature_matrice[i] = node_pair_feature
+            data['path'+str(i)] = node_pair_feature
+            node_pair_feature = []
+            #print('process time spent:',time.clock()-t1)
+            i += 1        
+        data['relation_labels'] = labels
+        train_data = pd.DataFrame(data)#转换为DataFrame
+        print('训练数据格式:')
+        print(train_data.head())
+        i = 0
+        exam_X = train_data.loc[:,['path'+str(i) for i in range(len(paths))]]#提取特征向量与标签
+        exam_Y = train_data.loc[:,'relation_labels']
+        X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= .8)#分开训练集与测试集数据
+        #X_train=X_train.values.reshape(-1,1)
+        #X_test=X_test.values.reshape(-1,1)
+        return X_train,X_test,Y_train,Y_test
 
-    def predict(self):
+    def train(self,X_train,Y_train,X_test,Y_test):
+        """训练"""
+        print('X_train:',X_train.shape)
+        print('Y_train:',Y_train.shape)
+        print('X_test:',X_test.shape)
+        print('Y_test:',Y_test.shape)
+        model = LogisticRegression(verbose=1)
+        model.fit(X_train,Y_train)
+        self.Model = model
+        print('准确率:'+str(model.score(X_test,Y_test)))
+        joblib.dump(model,'pra.model')
+        print('Model has been stored')
+
+    def predict(self,fromnode,tonode,paths,model):
         """预测"""
+        self.Model = joblib.load(model)
+        print('Model has been loaded')
+        pre_data = {}
+        i = 0
+        for path in paths:
+            pre_data['path'+str(i)] = self.compute_feature(path,fromnode,tonode)
+            i += 1
+        pre_data = pd.Series(pre_data).values.reshape(1,-1)
+        print('pre_data:',pre_data,' shape:',pre_data.shape)
+        print(self.Model.predict_proba(pre_data))
+        print(self.Model.predict(pre_data))
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
-    paths = PRA.find_paths(mode='permutions')
-    print('path_feature:',PRA.compute_feature(path = paths[0],fromnode=9836,tonode=6))
+    #paths = PRA.find_paths(mode='permutions')
+    #print(paths)
+    paths = [({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'RATED'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'DIRECTED'}, {'relationshipType': 'IN_GENRE'})]
+    #X_train,X_test,Y_train,Y_test = PRA.data_construt(paths)
+    #PRA.train(X_train,Y_train,X_test,Y_test)
+    PRA.predict(9848,4,paths,'pra.model')
+    #print('path_feature:',PRA.compute_feature(path = paths[0],fromnode=9836,tonode=6))
