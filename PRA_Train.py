@@ -11,7 +11,6 @@ from sklearn.model_selection  import train_test_split
 from sklearn.linear_model import LogisticRegression
 import joblib
 import time
-#import matplotlib.pyplot as plt
 
 Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='neo4j')
 
@@ -158,11 +157,11 @@ class PRA_Model():
         print('Y_train:',Y_train.shape)
         print('X_test:',X_test.shape)
         print('Y_test:',Y_test.shape)
-        model = LogisticRegression(verbose=1)
+        model = LogisticRegression(verbose=1)#实例化逻辑回归分类器
         model.fit(X_train,Y_train)
         self.Model = model
         print('准确率:'+str(model.score(X_test,Y_test)))
-        joblib.dump(model,'pra.model')
+        joblib.dump(model,'pra.model')#保存模型为pra.model
         print('Model has been stored')
 
     def predict(self,fromnode,tonode,paths,model):
@@ -178,6 +177,7 @@ class PRA_Model():
         print('pre_data:',pre_data,' shape:',pre_data.shape)
         print(self.Model.predict_proba(pre_data))
         print(self.Model.predict(pre_data))
+        print('Weights:',self.Model.coef_,'Bias:',self.Model.intercept_)
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
