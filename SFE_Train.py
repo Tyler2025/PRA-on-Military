@@ -9,4 +9,7 @@ class SFE_Model():
     SFE算法模型类
     """
     def __init__(self, *args, **kwargs):
+        """
+        初始化SFE类，
+        """
         return super().__init__(*args, **kwargs)

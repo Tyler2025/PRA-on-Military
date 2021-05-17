@@ -32,7 +32,7 @@ class Createoneo4j():
             target2 = target2.replace("[",'')
             target2 = target2.replace("]",'')
             print(target,'\n'+target2)
-            self.graph.run(target+target2)
+            #self.graph.run(target+target2)
             #self.graph.run(target2)
             #print(file+'Import Done')
 

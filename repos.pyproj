@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{bc15a2b8-05d0-4f83-8432-29debd2510d2}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>PRA_Train.py</StartupFile>
+    <StartupFile>loadcsv.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
