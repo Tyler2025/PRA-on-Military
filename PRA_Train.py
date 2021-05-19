@@ -11,6 +11,7 @@ from sklearn.model_selection  import train_test_split
 from sklearn.linear_model import LogisticRegression
 import joblib
 import time
+import math
 
 Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='neo4j')
 
@@ -18,7 +19,7 @@ class PRA_Model():
     """
     PRA算法模型类
     """
-    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','Actor','Genre']):
+    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','Actor','Director']):
         """
         初始化
         predicted_relationship 为列表[预测的关系名，头节点，尾节点]
@@ -29,7 +30,8 @@ class PRA_Model():
         self.relation_num = relation_num
         self.Graph = Graph
         self.Model = 0
-    def find_paths(self,mode):
+
+    def find_paths(self,mode,config):
         """
         找出符合关系的所有路径 
         mode即寻找符合关系路径的模式,permutions为全排列模式
@@ -46,9 +48,74 @@ class PRA_Model():
                 if (self.predicted_relation[1] in self.Graph.evaluate( 'MATCH ()-[r:'+path[0]['relationshipType']+']->() RETURN labels(startNode(r))')) and (self.predicted_relation[2] in self.Graph.evaluate( 'MATCH ()-[r:'+path[-1]['relationshipType']+']->() RETURN labels(endNode(r))')):
                     new_path.append(path)
             return new_path
+        elif mode == 'randomwalk':
+            #query_randomwalk = "MATCH (startNode:"+self.predicted_relationship[1]+") CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNode),steps: "+3+",walks:"+ config[steps]+"})"
+            sub_graph_start = []#子图特征
+            sub_graph_target = []
+            potential_path = []
+            for i in range(1,config['length']+1):#开始随机游走，先是源节点，再是目标节点
+                query_randomwalk_start = "MATCH (startNode:"+self.predicted_relation[1]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds"
+                temp_s = self.Graph.run(query_randomwalk_start).data()
+                for temp in temp_s:
+                    sub_graph_start.append(temp['nodeIds'])
+                query_randomwalk_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds"
+                temp_t = self.Graph.run(query_randomwalk_target).data()
+                for temp in temp_t:
+                    sub_graph_target.append(temp['nodeIds'])#注意关系的方向问题
+            sub_graph_start = [list(t) for t in set(tuple(_) for _ in sub_graph_start)]
+            sub_graph_target = [list(t) for t in set(tuple(_) for _ in sub_graph_target)]#列表中去除相同的列表元素
+            #开始融合子图特征以生成潜在路径
+            for target_intermedia in sub_graph_target:
+                for source_intermedia in sub_graph_start:
+                    if target_intermedia[-1] == source_intermedia[-1]:
+                        temp = source_intermedia[:-1] + list(reversed(target_intermedia))
+                        potential_path.append(temp)
+            #找出关系类型，并通过关系类型出现的次数来遴选关系路径
+            paths = self.parse_potential(potential_path)
+            return paths
+            print('Job')
         else:
             print('Please input the mode')
 
+    def parse_potential(self,paths):
+        """解析潜在路径返回关系类型序列"""
+        potential_reltypes = []
+        selected_path = []
+        for path in paths:
+            query_head = "MATCH "
+            query_where = "WHERE "
+            query_unwind = "UNWIND ["
+            query_return = " RETURN type(rela) AS relationshipType"
+            rel_typess = []
+            for i in range(len(path)):
+                query_head = query_head + "(m"+str(i)+")-[r"+str(i)+"]-"#注意这是无方向查询
+                query_where = query_where + "id(m" + str(i) + ")=" + str(path[i]) + " AND "
+                query_unwind = query_unwind + "r" + str(i) +","
+            query_head = query_head[:-6]
+            query_where = query_where[:-5]
+            query_unwind = query_unwind[:-4]+'] AS rela'
+            query = query_head + query_where + query_unwind + query_return
+            rel_types = self.Graph.run(query).data()#得到关系类型列表
+            for rel_type in rel_types:
+                rel_typess.append(rel_type['relationshipType'])
+            if len(rel_types) == len(path)-1:
+                potential_reltypes.append(tuple(rel_typess))
+            else:
+                for rel_seq in  self.list_split(rel_typess,(len(path)-1)):
+                    potential_reltypes.append(tuple(rel_seq))
+        potential_reltypes = list(set(potential_reltypes))#这里可以添加过滤的方法，比如Lao的acc方法，Mardner的常见次数方法
+        for potential_reltype in potential_reltypes:
+            temp = []
+            for rep in potential_reltype:
+                temp = temp + [{'relationshipType':rep}]
+            selected_path = selected_path + [tuple(temp)]
+        print('selected')
+        return selected_path
+
+    def list_split(self,listTemp, n):
+        '''列表均分函数，返回迭代器'''
+        for i in range(0, len(listTemp),n):
+            yield listTemp[i:i + n]
 
     def compute_feature(self,path,fromnode,tonode,direction=1):
         """
@@ -181,10 +248,12 @@ class PRA_Model():
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
+    paths = PRA.find_paths(mode='randomwalk',config={'length':2,'steps':3,'example_num':10})
+    print(paths)
     #paths = PRA.find_paths(mode='permutions')
     #print(paths)
-    paths = [({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'RATED'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'DIRECTED'}, {'relationshipType': 'IN_GENRE'})]
+    #paths = [({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'RATED'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'DIRECTED'}, {'relationshipType': 'IN_GENRE'})]
     #X_train,X_test,Y_train,Y_test = PRA.data_construt(paths)
     #PRA.train(X_train,Y_train,X_test,Y_test)
-    PRA.predict(9848,4,paths,'pra.model')
+    #PRA.predict(9848,4,paths,'pra.model')
     #print('path_feature:',PRA.compute_feature(path = paths[0],fromnode=9836,tonode=6))
