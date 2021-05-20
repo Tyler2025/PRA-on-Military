@@ -13,13 +13,13 @@ import joblib
 import time
 import math
 
-Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='neo4j')
+Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='military66')
 
 class PRA_Model():
     """
     PRA算法模型类
     """
-    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','Actor','Director']):
+    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','生产单位','产国']):
         """
         初始化
         predicted_relationship 为列表[预测的关系名，头节点，尾节点]
@@ -34,7 +34,7 @@ class PRA_Model():
     def find_paths(self,mode,config):
         """
         找出符合关系的所有路径 
-        mode即寻找符合关系路径的模式,permutions为全排列模式
+        mode即寻找符合关系路径的模式,permutions为全排列模式,randomwalk为随机游走模式,BFS为广度优先搜索策略
         """
         new_path = []
         paths = []
@@ -58,12 +58,14 @@ class PRA_Model():
                 temp_s = self.Graph.run(query_randomwalk_start).data()
                 for temp in temp_s:
                     sub_graph_start.append(temp['nodeIds'])
-                query_randomwalk_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds"
+                query_randomwalk_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds,id(startNodes) AS more_info"
                 temp_t = self.Graph.run(query_randomwalk_target).data()
                 for temp in temp_t:
                     sub_graph_target.append(temp['nodeIds'])#注意关系的方向问题
+                    sub_graph_target.append([temp['more_info']])#还得加上目的节点的ID,可以搜索直接走到目的节点的路径
             sub_graph_start = [list(t) for t in set(tuple(_) for _ in sub_graph_start)]
             sub_graph_target = [list(t) for t in set(tuple(_) for _ in sub_graph_target)]#列表中去除相同的列表元素
+
             #开始融合子图特征以生成潜在路径
             for target_intermedia in sub_graph_target:
                 for source_intermedia in sub_graph_start:
@@ -74,6 +76,54 @@ class PRA_Model():
             paths = self.parse_potential(potential_path)
             return paths
             print('Job')
+        elif mode=="BFS":#注意方向问题，需要嵌套写法吗？
+            #query_BFS = "MATCH (startNode:Actor) WITH startNode AS startNodes LIMIT 10 CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds,id(startNodes) AS more_info"
+            sub_graph_start = []
+            sub_graph_target = []
+            potential_path = []
+            for i in range(config['length']):
+                if i == 0:
+                    query_BFS_start = "MATCH (startNode:"+self.predicted_relation[1]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
+                    temp_s = self.Graph.run(query_BFS_start).data()
+                    for temp in temp_s:
+                        if len(temp['nodeIds']) > 2:#需要改进，抛弃出度大于阈值的节点
+                            for inter_node in temp['nodeIds'][1:]:
+                                sub_graph_start.append([temp['nodeIds'][0]]+[inter_node])
+                        else:
+                            sub_graph_start.append(temp['nodeIds'])
+                    query_BFS_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
+                    temp_t = self.Graph.run(query_BFS_target).data()
+                    for temp in temp_t:
+                        sub_graph_target.append([temp['nodeIds'][0]])
+                        if len(temp['nodeIds']) > 2:
+                            for inter_node in temp['nodeIds'][1:]:
+                                sub_graph_target.append([temp['nodeIds'][0]]+[inter_node])
+                        else:
+                            sub_graph_target.append(temp['nodeIds'])
+                else:
+                    for inter_path in sub_graph_start:
+                        if len(inter_path) == i+1:
+                            query_BFS_inter_start = "MATCH (start) WHERE id(start)="+str(inter_path[-1])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(start),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
+                            interr_nodes = self.Graph.run(query_BFS_inter_start).data()[0]['nodeIds'][1:]
+                            for inter in interr_nodes:
+                                inter_temp_s = inter_path + [inter]
+                                sub_graph_start.append(inter_temp_s)
+                    for inter_path in sub_graph_target:
+                        if len(inter_path) == i+1:
+                            query_BFS_inter_start = "MATCH (start) WHERE id(start)="+str(inter_path[-1])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(start),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
+                            interr_nodes = self.Graph.run(query_BFS_inter_start).data()[0]['nodeIds'][1:]
+                            for inter in interr_nodes:
+                                inter_temp_s = inter_path + [inter]
+                                sub_graph_target.append(inter_temp_s)
+            #开始融合子图特征以生成潜在路径
+            for target_intermedia in sub_graph_target:
+                for source_intermedia in sub_graph_start:
+                    if target_intermedia[-1] == source_intermedia[-1]:
+                        temp = source_intermedia[:-1] + list(reversed(target_intermedia))
+                        potential_path.append(temp)
+            #找出关系类型，并通过关系类型出现的次数来遴选关系路径
+            paths = self.parse_potential(potential_path)
+            print('Path Feature Selected By SFE')
         else:
             print('Please input the mode')
 
@@ -249,6 +299,7 @@ class PRA_Model():
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
     paths = PRA.find_paths(mode='randomwalk',config={'length':2,'steps':3,'example_num':10})
+    #paths = PRA.find_paths(mode='BFS',config={'length':3,'example_num':10})
     print(paths)
     #paths = PRA.find_paths(mode='permutions')
     #print(paths)
