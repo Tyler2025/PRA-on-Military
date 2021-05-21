@@ -58,11 +58,12 @@ class PRA_Model():
                 temp_s = self.Graph.run(query_randomwalk_start).data()
                 for temp in temp_s:
                     sub_graph_start.append(temp['nodeIds'])
-                query_randomwalk_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds,id(startNodes) AS more_info"
+                    sub_graph_start.append([temp['nodeIds'][0]])#还得加上目的节点的ID,可以搜索直接走到目的节点的路径
+                query_randomwalk_target = "MATCH (startNode:"+self.predicted_relation[2]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.randomWalk.stream({nodeProjection: '*',relationshipProjection: '*',start: id(startNodes),steps: "+str(i)+",walks:"+ str(config['steps'])+"}) YIELD nodeIds RETURN DISTINCT nodeIds"
                 temp_t = self.Graph.run(query_randomwalk_target).data()
                 for temp in temp_t:
                     sub_graph_target.append(temp['nodeIds'])#注意关系的方向问题
-                    sub_graph_target.append([temp['more_info']])#还得加上目的节点的ID,可以搜索直接走到目的节点的路径
+                    sub_graph_target.append([temp['nodeIds'][0]])#还得加上目的节点的ID,可以搜索直接走到目的节点的路径
             sub_graph_start = [list(t) for t in set(tuple(_) for _ in sub_graph_start)]
             sub_graph_target = [list(t) for t in set(tuple(_) for _ in sub_graph_target)]#列表中去除相同的列表元素
 
@@ -76,7 +77,8 @@ class PRA_Model():
             paths = self.parse_potential(potential_path)
             return paths
             print('Job')
-        elif mode=="BFS":#注意方向问题，需要嵌套写法吗？
+        elif mode=="BFS":#注意方向问题，需要嵌套写法吗？         
+            time_start = time.time() #开始计时
             #query_BFS = "MATCH (startNode:Actor) WITH startNode AS startNodes LIMIT 10 CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds,id(startNodes) AS more_info"
             sub_graph_start = []
             sub_graph_target = []
@@ -86,8 +88,13 @@ class PRA_Model():
                     query_BFS_start = "MATCH (startNode:"+self.predicted_relation[1]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
                     temp_s = self.Graph.run(query_BFS_start).data()
                     for temp in temp_s:
-                        if len(temp['nodeIds']) > 2:#需要改进，抛弃出度大于阈值的节点
+                        sub_graph_start.append([temp['nodeIds'][0]])
+                        nodes_num = len(temp['nodeIds'])
+                        if nodes_num > 2 and nodes_num < config['constraint']:#需要改进，抛弃出度大于阈值的节点,不能回头
                             for inter_node in temp['nodeIds'][1:]:
+                                sub_graph_start.append([temp['nodeIds'][0]]+[inter_node])
+                        elif nodes_num >= config['constraint']:
+                            for inter_node in temp['nodeIds'][1:config['constraint']+1]:
                                 sub_graph_start.append([temp['nodeIds'][0]]+[inter_node])
                         else:
                             sub_graph_start.append(temp['nodeIds'])
@@ -95,8 +102,12 @@ class PRA_Model():
                     temp_t = self.Graph.run(query_BFS_target).data()
                     for temp in temp_t:
                         sub_graph_target.append([temp['nodeIds'][0]])
-                        if len(temp['nodeIds']) > 2:
+                        nodes_num = len(temp['nodeIds'])
+                        if nodes_num > 2 and nodes_num < config['constraint']:#需要改进，抛弃出度大于阈值的节点,不能回头
                             for inter_node in temp['nodeIds'][1:]:
+                                sub_graph_target.append([temp['nodeIds'][0]]+[inter_node])
+                        elif nodes_num >= config['constraint']:
+                            for inter_node in temp['nodeIds'][1:config['constraint']+1]:
                                 sub_graph_target.append([temp['nodeIds'][0]]+[inter_node])
                         else:
                             sub_graph_target.append(temp['nodeIds'])
@@ -105,27 +116,84 @@ class PRA_Model():
                         if len(inter_path) == i+1:
                             query_BFS_inter_start = "MATCH (start) WHERE id(start)="+str(inter_path[-1])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(start),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
                             interr_nodes = self.Graph.run(query_BFS_inter_start).data()[0]['nodeIds'][1:]
+                            if len(interr_nodes) > config['constraint']:#限制节点出度
+                                interr_nodes = interr_nodes[:config['constraint']]
                             for inter in interr_nodes:
-                                inter_temp_s = inter_path + [inter]
-                                sub_graph_start.append(inter_temp_s)
+                                if inter not in inter_path:
+                                    inter_temp_s = inter_path + [inter]
+                                    sub_graph_start.append(inter_temp_s)
                     for inter_path in sub_graph_target:
                         if len(inter_path) == i+1:
                             query_BFS_inter_start = "MATCH (start) WHERE id(start)="+str(inter_path[-1])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(start),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
                             interr_nodes = self.Graph.run(query_BFS_inter_start).data()[0]['nodeIds'][1:]
+                            if len(interr_nodes) > config['constraint']:
+                                interr_nodes = interr_nodes[:config['constraint']]
                             for inter in interr_nodes:
-                                inter_temp_s = inter_path + [inter]
-                                sub_graph_target.append(inter_temp_s)
+                                if inter not in inter_path:#不能回头
+                                    inter_temp_s = inter_path + [inter]
+                                    sub_graph_target.append(inter_temp_s)
+            time_end1 = time.time()    #结束计时
+            time_c= time_end1 - time_start   #运行所花时间
+            print('subgraph feature time cost:', time_c, 's',' sub_graph_start_num:',len(sub_graph_start),' sub_graph_target_num:',len(sub_graph_target))
+            #首先，采样
+            sub_graph_start = self.sample_potential_paths(sub_graph_start,config['sample_num'],config['strategy'],2*config['length'])
+            sub_graph_target = self.sample_potential_paths(sub_graph_target,config['sample_num'],config['strategy'],2*config['length'])
             #开始融合子图特征以生成潜在路径
-            for target_intermedia in sub_graph_target:
-                for source_intermedia in sub_graph_start:
-                    if target_intermedia[-1] == source_intermedia[-1]:
-                        temp = source_intermedia[:-1] + list(reversed(target_intermedia))
-                        potential_path.append(temp)
+            potential_path = self.connect_sub_graph(sub_graph_start,sub_graph_target)
+            #考虑添加限制，现阶段生成80多万条潜在路径，实在太多
+            time_end2 = time.time()    #结束计时
+            time_c= time_end2 - time_end1   #运行所花时间
+            print('concentrate time cost:', time_c, 's','potential_path:',len(potential_path))
+
             #找出关系类型，并通过关系类型出现的次数来遴选关系路径
             paths = self.parse_potential(potential_path)
+
+            time_end = time.time()    #结束计时
+            time_c= time_end - time_start   #运行所花时间
+            print('time cost', time_c, 's')
             print('Path Feature Selected By SFE')
+            return paths
         else:
             print('Please input the mode')
+
+    def connect_sub_graph(self,sub_graph_start,sub_graph_target):
+        """连接两个子图特征"""
+        potential_path=[]
+        for target_intermedia in sub_graph_target:
+            for source_intermedia in sub_graph_start:
+                if target_intermedia[-1] == source_intermedia[-1]:
+                    temp = source_intermedia[:-1] + list(reversed(target_intermedia))
+                    potential_path.append(temp)
+        return potential_path
+
+    def sample_potential_paths(self,potential_path,sample_num,strategy,max_len):
+        """对潜在路径抽样"""
+        samples = []
+        if strategy == 'random': 
+            df = pd.DataFrame({'potential_path':pd.Series(potential_path)})
+            #print(df.head())
+            df_samples = df.sample(n=sample_num,replace=False,random_state=0)
+            #print(df_samples.head())
+            samples = df_samples['potential_path'].values.tolist()
+        elif strategy == 'stratified':
+            stratified_length = [0]*max_len
+            for path in potential_path:
+                index = len(path)-2
+                if stratified_length[index] == 0:
+                    stratified_length[index]=[path]
+                else:
+                    stratified_length[index].append(path)
+            for i in range(stratified_length.count(0)):
+                stratified_length.remove(0)#去除没有该种长度的路径
+            quarter = math.floor(sample_num/len(stratified_length))
+            for dump in stratified_length:
+                if quarter < len(dump):
+                    df = pd.DataFrame({'potential_path':pd.Series(dump)})
+                    df_samples = df.sample(n=quarter,replace=False,random_state=0)#注意当采样的样本总数小于采样数目时会抛出错误
+                    samples = samples + df_samples['potential_path'].values.tolist()
+                else:
+                    samples = samples + dump#注意一下
+        return samples
 
     def parse_potential(self,paths):
         """解析潜在路径返回关系类型序列"""
@@ -138,10 +206,10 @@ class PRA_Model():
             query_return = " RETURN type(rela) AS relationshipType"
             rel_typess = []
             for i in range(len(path)):
-                query_head = query_head + "(m"+str(i)+")-[r"+str(i)+"]-"#注意这是无方向查询
+                query_head = query_head + "(m"+str(i)+")-[r"+str(i)+"]->"#注意这是无方向查询###
                 query_where = query_where + "id(m" + str(i) + ")=" + str(path[i]) + " AND "
                 query_unwind = query_unwind + "r" + str(i) +","
-            query_head = query_head[:-6]
+            query_head = query_head[:-7]
             query_where = query_where[:-5]
             query_unwind = query_unwind[:-4]+'] AS rela'
             query = query_head + query_where + query_unwind + query_return
@@ -298,9 +366,11 @@ class PRA_Model():
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
-    paths = PRA.find_paths(mode='randomwalk',config={'length':2,'steps':3,'example_num':10})
-    #paths = PRA.find_paths(mode='BFS',config={'length':3,'example_num':10})
-    print(paths)
+    #paths = PRA.find_paths(mode='randomwalk',config={'length':2,'steps':3,'example_num':10})
+    paths = PRA.find_paths(mode='BFS',config={'length':3,'example_num':10,'constraint':20,'sample_num':1000,'strategy':'stratified'})
+    for path in paths:
+        print(path)
+
     #paths = PRA.find_paths(mode='permutions')
     #print(paths)
     #paths = [({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'RATED'}, {'relationshipType': 'IN_GENRE'}), ({'relationshipType': 'ACTED_IN'}, {'relationshipType': 'DIRECTED'}, {'relationshipType': 'IN_GENRE'})]
@@ -308,3 +378,6 @@ if __name__=="__main__":
     #PRA.train(X_train,Y_train,X_test,Y_test)
     #PRA.predict(9848,4,paths,'pra.model')
     #print('path_feature:',PRA.compute_feature(path = paths[0],fromnode=9836,tonode=6))
+
+    #paths = [[4,1,562,351],[2,4568,19502],[365,251],[1598,256],[12,3498,2456],[12,32],[12,2]]
+    #PRA.sample_potential_paths(paths,6,'stratified',6)
