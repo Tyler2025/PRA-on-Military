@@ -19,15 +19,13 @@ class PRA_Model():
     """
     PRA算法模型类
     """
-    def __init__(self,Graph,relation_num=2,predicted_relationship=['actedin','生产单位','产国']):
+    def __init__(self,Graph,predicted_relationship=['actedin','生产单位','产国']):
         """
         初始化
         predicted_relationship 为列表[预测的关系名，头节点，尾节点]
-        relation_num 为限定的关系路径包含的关系数量
         Graph 为py2neo GRAPH对象
         """
         self.predicted_relation = predicted_relationship
-        self.relation_num = relation_num
         self.Graph = Graph
         self.Model = 0
 
@@ -41,7 +39,7 @@ class PRA_Model():
         if mode == 'permutions':
             relations = self.Graph.call.db.relationshipTypes().data()#返回所有关系类型,列表返回
             per_num = 2
-            while per_num <= self.relation_num:
+            while per_num <= config['relation_num']:
                 paths = paths+list(permutations(relations,per_num))
                 per_num += 1
             for path in paths:
@@ -76,7 +74,7 @@ class PRA_Model():
             #找出关系类型，并通过关系类型出现的次数来遴选关系路径
             paths = self.parse_potential(potential_path)
             return paths
-            print('Job')
+            #print('Job')
         elif mode=="BFS":#注意方向问题，需要嵌套写法吗？         
             time_start = time.time() #开始计时
             #query_BFS = "MATCH (startNode:Actor) WITH startNode AS startNodes LIMIT 10 CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds,id(startNodes) AS more_info"
@@ -150,7 +148,7 @@ class PRA_Model():
 
             time_end = time.time()    #结束计时
             time_c= time_end - time_start   #运行所花时间
-            print('time cost', time_c, 's')
+            print('time cost', time_c, 's','ultimate_paths:',len(paths))
             print('Path Feature Selected By SFE')
             return paths
         else:
@@ -227,7 +225,7 @@ class PRA_Model():
             for rep in potential_reltype:
                 temp = temp + [{'relationshipType':rep}]
             selected_path = selected_path + [tuple(temp)]
-        print('selected')
+        #print('selected')
         return selected_path
 
     def list_split(self,listTemp, n):
@@ -251,7 +249,7 @@ class PRA_Model():
         if direction == 0:#注意正向迭代迭代
             if len(path)==1:
                 query = "MATCH (N),(M)-[r:"+path[0]['relationshipType']+"]->(tar)"
-                print()
+                #print()
                 if self.Graph.run(query).data()[0]=="true":
                     hspe = 1/n
                 else:
