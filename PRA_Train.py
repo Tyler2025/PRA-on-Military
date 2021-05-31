@@ -33,6 +33,7 @@ class PRA_Model():
         """
         找出符合关系的所有路径 
         mode即寻找符合关系路径的模式,permutions为全排列模式,randomwalk为随机游走模式,BFS为广度优先搜索策略
+        randomwalk：length：限制单边最大关系路径长度，example_num：指定单边使用的节点数量，steps：随机游走数量
         """
         new_path = []
         paths = []
@@ -82,6 +83,7 @@ class PRA_Model():
             sub_graph_target = []
             potential_path = []
             for i in range(config['length']):
+                print('i=',i)
                 if i == 0:
                     query_BFS_start = "MATCH (startNode:"+self.predicted_relation[1]+") WITH startNode AS startNodes LIMIT "+str(config['example_num'])+" CALL gds.alpha.bfs.stream({nodeProjection: '*',relationshipProjection: '*',startNode: id(startNodes),maxDepth:1}) YIELD nodeIds RETURN nodeIds"
                     temp_s = self.Graph.run(query_BFS_start).data()
@@ -134,8 +136,9 @@ class PRA_Model():
             time_c= time_end1 - time_start   #运行所花时间
             print('subgraph feature time cost:', time_c, 's',' sub_graph_start_num:',len(sub_graph_start),' sub_graph_target_num:',len(sub_graph_target))
             #首先，采样
-            sub_graph_start = self.sample_potential_paths(sub_graph_start,config['sample_num'],config['strategy'],2*config['length'])
-            sub_graph_target = self.sample_potential_paths(sub_graph_target,config['sample_num'],config['strategy'],2*config['length'])
+            if 'strategy' in config.keys():
+                sub_graph_start = self.sample_potential_paths(sub_graph_start,config['sample_num'],config['strategy'],2*config['length'])
+                sub_graph_target = self.sample_potential_paths(sub_graph_target,config['sample_num'],config['strategy'],2*config['length'])
             #开始融合子图特征以生成潜在路径
             potential_path = self.connect_sub_graph(sub_graph_start,sub_graph_target)
             #考虑添加限制，现阶段生成80多万条潜在路径，实在太多
@@ -332,6 +335,56 @@ class PRA_Model():
         X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= .8)#分开训练集与测试集数据
         #X_train=X_train.values.reshape(-1,1)
         #X_test=X_test.values.reshape(-1,1)
+        return X_train,X_test,Y_train,Y_test
+
+    def sfe_data_construct(self,paths,scale,main_col,config):
+        """
+        训练集与测试集构建
+        """
+        querysids = "MATCH (m:"+self.predicted_relation[1]+") WHERE id(m)<>1400 WITH id(m) AS sid LIMIT "+str(scale)+" RETURN collect(sid) as sids"#找出路径首位节点id
+        sids = self.Graph.run(querysids).data()[0]['sids']
+        querytids = "MATCH (m:"+self.predicted_relation[2]+") WITH id(m) AS tid LIMIT "+str(scale)+" RETURN collect(tid) as tids"
+        tids = self.Graph.run(querytids).data()[0]['tids']
+        node_pairs = [0]*len(sids)*len(tids)
+        i = 0
+        for sid in sids:#得到所有的节点对组合
+            for tid in tids:
+                node_pairs[i] = [sid,tid]
+                i += 1
+        i = 0
+        node_pair_feature = []
+        labels = []
+        data = {}
+        for path in paths:#计算对应节点对的路径特征向量
+            time_start = time.time() #开始计时
+            for node_pair in node_pairs:
+                path_feature = self.sfe_compute_feature(path,node_pair[0],node_pair[1])#计算路径特征值
+                if i == main_col:
+                    if path_feature == 0:#判断关系标签,只运行一遍
+                        labels = labels + [0]
+                    else:
+                        labels = labels + [1]
+                node_pair_feature = node_pair_feature + [path_feature]
+            data['path'+str(i)] = node_pair_feature
+            time_end = time.time() #开始计时
+            print('Path',i,'Computed,','Time Cost:',time_end-time_start,'s')
+            node_pair_feature = [] 
+            i += 1  
+
+        data['relation_labels'] = labels
+        with open(config['data_name'],'wb') as f:
+            pickle.dump(data,f)
+
+        #with open('dataset.txt','rb') as f:
+        #    data = pickle.load(f)
+
+        train_data = pd.DataFrame(data)#转换为DataFrame
+        print('训练数据格式:')
+        print(train_data.head())
+        i = 0
+        exam_X = train_data.loc[:,['path'+str(i) for i in range(len(paths))]]#提取特征向量与标签
+        exam_Y = train_data.loc[:,'relation_labels']
+        X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= 0.8)#分开训练集与测试集数据
         return X_train,X_test,Y_train,Y_test
 
     def train(self,X_train,Y_train,X_test,Y_test):

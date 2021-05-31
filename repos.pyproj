@@ -22,6 +22,9 @@
     <Compile Include="create_relation.py" />
     <Compile Include="json2csv.py" />
     <Compile Include="loadcsv.py" />
+    <Compile Include="module1.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SFE_Train.py">
       <SubType>Code</SubType>
     </Compile>
