@@ -63,9 +63,12 @@ class SFE_Model(PRA_Model):
                 labels = pickle.load(f)
                 return labels
 
-    def sfe_data_construct(self,paths,scale,main_col,config,mode):
+    def sfe_data_construct(self,paths,scale,config,mode):
         """
         训练集与测试集构建
+        paths:路径
+        scale:抽样数量
+        config:配置杂项
         """
         if mode == 0:
             labels_qualified = self.load_labels('Labels.csv','labels.txt',1)
@@ -130,17 +133,20 @@ class SFE_Model(PRA_Model):
         potential_paths = []
         paths_acc = [0]*len(paths)
         path_acc_temp = []
-        labels_qualified = SFE.load_labels('Labels.csv',label_file,1)#首先读出标签集
+        labels_qualified = self.load_labels('Labels.csv',label_file,1)#首先读出标签集
         n = len(labels_qualified)
-        for i,path in enumerate(paths):
-            for label in labels_qualified:
-                path_acc_temp.append(self.sfe_compute_feature(path,label[0],label[1]))
-            paths_acc[i] = sum(path_acc_temp)/n
-            path_acc_temp = []
-        index = sorted(range(len(paths_acc)), key=lambda k: paths_acc[k],reverse = True)#返回降序排列acc的索引
-        for index_num in index[:path_num]:
-            potential_paths.append(paths[index_num])
-        return potential_paths
+        if path_num < len(paths):
+            for i,path in enumerate(paths):
+                for label in labels_qualified:
+                    path_acc_temp.append(self.sfe_compute_feature(path,label[0],label[1]))
+                paths_acc[i] = sum(path_acc_temp)/n
+                path_acc_temp = []
+            index = sorted(range(len(paths_acc)), key=lambda k: paths_acc[k],reverse = True)#返回降序排列acc的索引
+            for index_num in index[:path_num]:
+                potential_paths.append(paths[index_num])
+            return potential_paths
+        else:
+            return paths
 
     def sfe_train(self,X_train,Y_train,X_test,Y_test,config):
         """SFE训练"""
@@ -151,9 +157,11 @@ class SFE_Model(PRA_Model):
         model = LogisticRegression(verbose=1)#实例化逻辑回归分类器
         model.fit(X_train,Y_train)
         self.Model = model
-        print('准确率:'+str(model.score(X_test,Y_test)))
+        precision = str(model.score(X_test,Y_test))
+        print('准确率:'+precision)
         joblib.dump(model,config['model_name'])#保存模型为sfe.model
         print('Model has been stored')
+        return precision
 
     def sfe_predict(self,fromnode,tonode,paths,model):
         """SFE预测"""
@@ -166,105 +174,251 @@ class SFE_Model(PRA_Model):
             i += 1
         pre_data = pd.Series(pre_data).values.reshape(1,-1)
         print('pre_data:',pre_data,' shape:',pre_data.shape)
-        print(self.Model.predict_proba(pre_data))
-        print(self.Model.predict(pre_data))
+        proba = self.Model.predict_proba(pre_data)
+        print(proba)
+        predict = self.Model.predict(pre_data)
+        print(predict)
+        return pre_data,proba,predict
         #weights = self.Model.coef_
         #print('Weights:',weights,'Bias:',self.Model.intercept_)
+
+def SFE_rw_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None,config=None):
+    """
+    mode:0-训练，1-预测
+    """
+    SFE_rw = SFE_Model(Graph,predicted_relationship)
+    if mode == 0:
+        start_time = time.time()
+        paths = SFE_rw.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
+        end_time =  time.time()
+        search_time = end_time-start_time
+        print("搜索用时:",search_time,'s')
+        with open(file_path+'/path/path_sfe_randomwalk.txt','wb') as f:
+            pickle.dump(paths,f)
+        start_time = time.time()
+        X_train,X_test,Y_train,Y_test = SFE_rw.sfe_data_construct(paths,config['num'],{'data_name':file_path+'/dataset/sfe_rw_data.txt'},mode=0)
+        end_time =  time.time()
+        construct_time = end_time-start_time
+        print("构建训练集用时:",construct_time,'s')
+        start_time = time.time()
+        precision = SFE_rw.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_rw_45.model'})
+        end_time =  time.time()
+        print("训练用时:",end_time-start_time,'s')
+        data_shape = X_train.shape +X_test.shape +Y_train.shape +Y_test.shape
+        return paths,search_time,construct_time,precision,data_shape
+    elif mode == 1:
+        with open(file_path+'/path/path_sfe_randomwalk.txt','rb') as f:
+            paths = pickle.load(f)
+        start_time = time.time()
+        pre_data,proba,predict= SFE_rw.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_rw_45.model')
+        end_time =  time.time()
+        print("预测用时:",end_time-start_time,'s')
+        return pre_data,proba,predict
+
+def PRA_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None,config=None):
+    """
+    mode:0-训练，1-预测
+    """
+    PRA = SFE_Model(Graph,predicted_relationship)
+    if mode == 0:
+        start_time = time.time()
+        paths = PRA.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
+        end_time =  time.time()
+        search_time = end_time-start_time
+        print("搜索用时:",search_time,'s')
+        with open(file_path+'/path/path_pra_randomwalk.txt','wb') as f:
+            pickle.dump(paths,f)
+        #with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
+        #    paths = pickle.load(f)
+        start_time = time.time()
+        X_train,X_test,Y_train,Y_test = PRA.data_construt(paths,config['num'],{'data_name':file_path+'/dataset/pra_rw_data.txt'},mode=0)
+        end_time =  time.time()
+        construct_time = end_time-start_time
+        print("构建训练集用时:",construct_time,'s')
+        start_time = time.time()
+        precision = PRA.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/pra_rw_45.model'})
+        end_time =  time.time()
+        print("训练用时:",end_time-start_time,'s')
+        data_shape = X_train.shape +X_test.shape +Y_train.shape +Y_test.shape
+        return paths,search_time,construct_time,precision,data_shape
+    elif mode == 1:
+        with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
+            paths = pickle.load(f)
+        start_time = time.time()
+        pre_data,proba,predict = PRA.predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/pra_rw_45.model')
+        end_time =  time.time()
+        print("预测用时:",end_time-start_time,'s')
+        return pre_data,proba,predict
+
+def SFE_BFS_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None,config=None):
+    """
+    mode:0-训练，1-预测
+    """
+    SFE_BFS = SFE_Model(Graph,predicted_relationship)
+    if mode == 0:
+        start_time = time.time()
+        paths = SFE_BFS.find_paths(mode='BFS',config={'length':3,'example_num':10,'constraint':20})
+        end_time =  time.time()
+        search_time = end_time-start_time
+        print("搜索用时:",search_time,'s')
+        with open(file_path+'/path/path_sfe_bfs_country.txt','wb') as f:
+            pickle.dump(paths,f)
+        #with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
+        #    paths = pickle.load(f)
+        start_time = time.time()
+        X_train,X_test,Y_train,Y_test = SFE_BFS.sfe_data_construct(paths,config['num'],{'data_name':file_path+'/dataset/sfe_bfs_data.txt'},mode=0)
+        end_time =  time.time()
+        construct_time = end_time-start_time
+        print("构建训练集用时:",construct_time,'s')
+        start_time = time.time()
+        precision = SFE_BFS.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_bfs_45.model'})
+        end_time =  time.time()
+        print("训练用时:",end_time-start_time,'s')    
+        data_shape = X_train.shape +X_test.shape +Y_train.shape +Y_test.shape
+        return paths,search_time,construct_time,precision,data_shape
+    elif mode == 1:
+        with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
+            paths = pickle.load(f)
+        start_time = time.time()
+        pre_data,proba,predict = SFE_BFS.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_bfs_45.model')
+        end_time =  time.time()
+        print("预测用时:",end_time-start_time,'s')
+        return  pre_data,proba,predict
+
+def Military_inference(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None,config=None):
+    """
+    mode:0-训练，1-预测
+    """
+    SFE = SFE_Model(Graph,predicted_relationship)
+    if mode == 0:
+        time_start = time.time() #开始计时
+        paths = SFE.find_paths(mode='BFS',config={'length':3,'example_num':10,'constraint':20,'sample_num':1000,'strategy':'stratified'})
+        paths = SFE.sfe_acc_path_select(paths,'labels.txt',10)
+        time_end = time.time() 
+        search_time = time_end-time_start
+        print('路径选择用时:',search_time,'s')
+        with open(file_path+'/path/sfe_path_acc_select30_deletenull.txt','wb') as f:
+            pickle.dump(paths,f)
+        time_start = time.time() #开始计时
+        X_train,X_test,Y_train,Y_test = SFE.sfe_data_construct(paths,config['num'],{'data_name':'dataset_path30_newlabel_45_1_deletenull.txt'},mode=0)
+        time_end = time.time() 
+        construct_time = time_end-time_start
+        print('构建训练集总用时:',construct_time,'s')
+        start_time = time.time()
+        precision = SFE.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/MRRA_path30_newlabel_45_1_deletenull.model'})
+        end_time =  time.time()
+        print("训练用时:",end_time-start_time,'s')    
+        data_shape = X_train.shape +X_test.shape +Y_train.shape +Y_test.shape
+        return paths,search_time,construct_time,precision,data_shape
+        #weights = SFE.Model.coef_
+        #y = weights.argsort()
+        #for sample in y[0][:5]:
+        #    print('Top weight',weights[0][sample],'path',paths[sample])
+        #for sample in y[0][-5:]:
+        #    print('Bottom weight',weights[0][sample],'path',paths[sample])
+    elif mode == 1:
+        with open(file_path+'/path/sfe_path_acc_select30_deletenull.txt','rb') as f:
+            paths = pickle.load(f)
+        start_time = time.time()
+        pre_data,proba,predict = SFE.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/dataset_path30_newlabel_45_1_deletenull.model')
+        end_time =  time.time()
+        print("预测用时:",end_time-start_time,'s')
+        return  pre_data,proba,predict
 
 if __name__=="__main__":
     Military = Graph('http://localhost:7474',auth=('neo4j','ne1013pk250'),name='military66')
  
-    def PRA_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
-        """
-        mode:0-训练，1-预测
-        """
-        PRA = SFE_Model(Graph,predicted_relationship)
-        if mode == 0:
-            #start_time = time.time()
-            #paths = PRA.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
-            #end_time =  time.time()
-            #print("搜索用时:",end_time-start_time,'s')
-            #with open(file_path+'/path/path_pra_randomwalk.txt','wb') as f:
-            #    pickle.dump(paths,f)
-            with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
-                paths = pickle.load(f)
-            start_time = time.time()
-            X_train,X_test,Y_train,Y_test = PRA.data_construt(paths,45,{'data_name':file_path+'/dataset/pra_rw_data.txt'},mode=0)
-            end_time =  time.time()
-            print("构建训练集用时:",end_time-start_time,'s')
-            start_time = time.time()
-            PRA.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/pra_rw_45.model'})
-            end_time =  time.time()
-            print("训练用时:",end_time-start_time,'s')
-        elif mode == 1:
-            with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
-                paths = pickle.load(f)
-            start_time = time.time()
-            SFE_rw.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/pra_rw_45.model')
-            end_time =  time.time()
-            print("预测用时:",end_time-start_time,'s')
-            return
+    #def PRA_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
+    #    """
+    #    mode:0-训练，1-预测
+    #    """
+    #    PRA = SFE_Model(Graph,predicted_relationship)
+    #    if mode == 0:
+    #        #start_time = time.time()
+    #        #paths = PRA.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
+    #        #end_time =  time.time()
+    #        #print("搜索用时:",end_time-start_time,'s')
+    #        #with open(file_path+'/path/path_pra_randomwalk.txt','wb') as f:
+    #        #    pickle.dump(paths,f)
+    #        with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
+    #            paths = pickle.load(f)
+    #        start_time = time.time()
+    #        X_train,X_test,Y_train,Y_test = PRA.data_construt(paths,45,{'data_name':file_path+'/dataset/pra_rw_data.txt'},mode=0)
+    #        end_time =  time.time()
+    #        print("构建训练集用时:",end_time-start_time,'s')
+    #        start_time = time.time()
+    #        PRA.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/pra_rw_45.model'})
+    #        end_time =  time.time()
+    #        print("训练用时:",end_time-start_time,'s')
+    #    elif mode == 1:
+    #        with open(file_path+'/path/path_pra_randomwalk.txt','rb') as f:
+    #            paths = pickle.load(f)
+    #        start_time = time.time()
+    #        SFE_rw.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/pra_rw_45.model')
+    #        end_time =  time.time()
+    #        print("预测用时:",end_time-start_time,'s')
+    #        return
 
-    def SFE_rw_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
-        """
-        mode:0-训练，1-预测
-        """
-        SFE_rw = SFE_Model(Graph,predicted_relationship)
-        if mode == 0:
-            start_time = time.time()
-            paths = SFE_rw.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
-            end_time =  time.time()
-            print("搜索用时:",end_time-start_time,'s')
-            with open(file_path+'/path/path_sfe_randomwalk.txt','wb') as f:
-                pickle.dump(paths,f)
-            start_time = time.time()
-            X_train,X_test,Y_train,Y_test = SFE_rw.sfe_data_construct(paths,45,2,{'data_name':file_path+'/dataset/sfe_rw_data.txt'},mode=0)
-            end_time =  time.time()
-            print("构建训练集用时:",end_time-start_time,'s')
-            start_time = time.time()
-            SFE_rw.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_rw_45.model'})
-            end_time =  time.time()
-            print("训练用时:",end_time-start_time,'s')
-        elif mode == 1:
-            with open(file_path+'/path/path_sfe_randomwalk.txt','rb') as f:
-                paths = pickle.load(f)
-            start_time = time.time()
-            SFE_rw.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_rw_45.model')
-            end_time =  time.time()
-            print("预测用时:",end_time-start_time,'s')
-            return
+    #def SFE_rw_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
+    #    """
+    #    mode:0-训练，1-预测
+    #    """
+    #    SFE_rw = SFE_Model(Graph,predicted_relationship)
+    #    if mode == 0:
+    #        start_time = time.time()
+    #        paths = SFE_rw.find_paths(mode='randomwalk',config={'length':3,'example_num':10,'sample_num':1000,'steps':20})
+    #        end_time =  time.time()
+    #        print("搜索用时:",end_time-start_time,'s')
+    #        with open(file_path+'/path/path_sfe_randomwalk.txt','wb') as f:
+    #            pickle.dump(paths,f)
+    #        start_time = time.time()
+    #        X_train,X_test,Y_train,Y_test = SFE_rw.sfe_data_construct(paths,45,2,{'data_name':file_path+'/dataset/sfe_rw_data.txt'},mode=0)
+    #        end_time =  time.time()
+    #        print("构建训练集用时:",end_time-start_time,'s')
+    #        start_time = time.time()
+    #        SFE_rw.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_rw_45.model'})
+    #        end_time =  time.time()
+    #        print("训练用时:",end_time-start_time,'s')
+    #    elif mode == 1:
+    #        with open(file_path+'/path/path_sfe_randomwalk.txt','rb') as f:
+    #            paths = pickle.load(f)
+    #        start_time = time.time()
+    #        pre_data,proba,predict= SFE_rw.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_rw_45.model')
+    #        end_time =  time.time()
+    #        print("预测用时:",end_time-start_time,'s')
+    #        return pre_data,proba,predict
 
-    def SFE_BFS_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
-        """
-        mode:0-训练，1-预测
-        """
-        SFE_BFS = SFE_Model(Graph,predicted_relationship)
-        if mode == 0:
-            #start_time = time.time()
-            #paths = SFE_BFS.find_paths(mode='BFS',config={'length':3,'example_num':10,'constraint':20})
-            #end_time =  time.time()
-            #print("搜索用时:",end_time-start_time,'s')
-            #with open('path_sfe_bfs_country.txt','wb') as f:
-            #    pickle.dump(paths,f)
-            with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
-                paths = pickle.load(f)
-            start_time = time.time()
-            X_train,X_test,Y_train,Y_test = SFE_BFS.sfe_data_construct(paths,45,2,{'data_name':file_path+'/dataset/sfe_bfs_data.txt'},mode=0)
-            end_time =  time.time()
-            print("构建训练集用时:",end_time-start_time,'s')
-            start_time = time.time()
-            SFE_BFS.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_bfs_45.model'})
-            print('准确率:'+str(SFE_BFS.Model.score(X_test,Y_test)))
-            end_time =  time.time()
-            print("训练用时:",end_time-start_time,'s')    
-        elif mode == 1:
-            with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
-                paths = pickle.load(f)
-            start_time = time.time()
-            SFE_BFS.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_bfs_45.model')
-            end_time =  time.time()
-            print("预测用时:",end_time-start_time,'s')
-            return  
+    #def SFE_BFS_model_test(Graph,predicted_relationship,mode,file_path,predict_nodes_pair=None):
+    #    """
+    #    mode:0-训练，1-预测
+    #    """
+    #    SFE_BFS = SFE_Model(Graph,predicted_relationship)
+    #    if mode == 0:
+    #        #start_time = time.time()
+    #        #paths = SFE_BFS.find_paths(mode='BFS',config={'length':3,'example_num':10,'constraint':20})
+    #        #end_time =  time.time()
+    #        #print("搜索用时:",end_time-start_time,'s')
+    #        #with open('path_sfe_bfs_country.txt','wb') as f:
+    #        #    pickle.dump(paths,f)
+    #        with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
+    #            paths = pickle.load(f)
+    #        start_time = time.time()
+    #        X_train,X_test,Y_train,Y_test = SFE_BFS.sfe_data_construct(paths,45,2,{'data_name':file_path+'/dataset/sfe_bfs_data.txt'},mode=0)
+    #        end_time =  time.time()
+    #        print("构建训练集用时:",end_time-start_time,'s')
+    #        start_time = time.time()
+    #        SFE_BFS.sfe_train(X_train,Y_train,X_test,Y_test,{'model_name':file_path+'/model/sfe_bfs_45.model'})
+    #        print('准确率:'+str(SFE_BFS.Model.score(X_test,Y_test)))
+    #        end_time =  time.time()
+    #        print("训练用时:",end_time-start_time,'s')    
+    #    elif mode == 1:
+    #        with open(file_path+'/path/path_sfe_bfs_country.txt','rb') as f:
+    #            paths = pickle.load(f)
+    #        start_time = time.time()
+    #        SFE_BFS.sfe_predict(predict_nodes_pair[0],predict_nodes_pair[1],paths,file_path+'/model/sfe_bfs_45.model')
+    #        end_time =  time.time()
+    #        print("预测用时:",end_time-start_time,'s')
+    #        return  
 
     #def Military_inference(Graph,predicted_relationship,mode):
     #    """
@@ -287,9 +441,9 @@ if __name__=="__main__":
     #        print('Top weight',weights[0][sample],'path',paths[sample])
     #    for sample in y[0][-5:]:
     #        print('Bottom weight',weights[0][sample],'path',paths[sample])
-    #SFE_rw_model_test(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'],mode=1,file_path='Temp_Files/SFE_rw',predict_nodes_pair=[3533,17])
+    SFE_rw_model_test(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'],mode=1,file_path='Temp_Files/SFE_rw',predict_nodes_pair=[3533,17])
     #PRA_model_test(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'],mode=0,file_path='Temp_Files/PRA')
-    SFE_BFS_model_test(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'],mode=0,file_path='Temp_Files/SFE_bfs')
+    #SFE_BFS_model_test(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'],mode=0,file_path='Temp_Files/SFE_bfs')
    
 
     #SFE = SFE_Model(Graph=Military,predicted_relationship=['生产单位位于','生产单位','产国'])

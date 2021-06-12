@@ -343,55 +343,55 @@ class PRA_Model():
         X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= 0.7)#分开训练集与测试集数据
         return X_train,X_test,Y_train,Y_test
 
-    def sfe_data_construct(self,paths,scale,main_col,config):
-        """
-        训练集与测试集构建
-        """
-        querysids = "MATCH (m:"+self.predicted_relation[1]+") WHERE id(m)<>1400 WITH id(m) AS sid LIMIT "+str(scale)+" RETURN collect(sid) as sids"#找出路径首位节点id
-        sids = self.Graph.run(querysids).data()[0]['sids']
-        querytids = "MATCH (m:"+self.predicted_relation[2]+") WITH id(m) AS tid LIMIT "+str(scale)+" RETURN collect(tid) as tids"
-        tids = self.Graph.run(querytids).data()[0]['tids']
-        node_pairs = [0]*len(sids)*len(tids)
-        i = 0
-        for sid in sids:#得到所有的节点对组合
-            for tid in tids:
-                node_pairs[i] = [sid,tid]
-                i += 1
-        i = 0
-        node_pair_feature = []
-        labels = []
-        data = {}
-        for path in paths:#计算对应节点对的路径特征向量
-            time_start = time.time() #开始计时
-            for node_pair in node_pairs:
-                path_feature = self.sfe_compute_feature(path,node_pair[0],node_pair[1])#计算路径特征值
-                if i == main_col:
-                    if path_feature == 0:#判断关系标签,只运行一遍
-                        labels = labels + [0]
-                    else:
-                        labels = labels + [1]
-                node_pair_feature = node_pair_feature + [path_feature]
-            data['path'+str(i)] = node_pair_feature
-            time_end = time.time() #开始计时
-            print('Path',i,'Computed,','Time Cost:',time_end-time_start,'s')
-            node_pair_feature = [] 
-            i += 1  
+    #def sfe_data_construct(self,paths,scale,main_col,config):
+    #    """
+    #    训练集与测试集构建
+    #    """
+    #    querysids = "MATCH (m:"+self.predicted_relation[1]+") WHERE id(m)<>1400 WITH id(m) AS sid LIMIT "+str(scale)+" RETURN collect(sid) as sids"#找出路径首位节点id
+    #    sids = self.Graph.run(querysids).data()[0]['sids']
+    #    querytids = "MATCH (m:"+self.predicted_relation[2]+") WITH id(m) AS tid LIMIT "+str(scale)+" RETURN collect(tid) as tids"
+    #    tids = self.Graph.run(querytids).data()[0]['tids']
+    #    node_pairs = [0]*len(sids)*len(tids)
+    #    i = 0
+    #    for sid in sids:#得到所有的节点对组合
+    #        for tid in tids:
+    #            node_pairs[i] = [sid,tid]
+    #            i += 1
+    #    i = 0
+    #    node_pair_feature = []
+    #    labels = []
+    #    data = {}
+    #    for path in paths:#计算对应节点对的路径特征向量
+    #        time_start = time.time() #开始计时
+    #        for node_pair in node_pairs:
+    #            path_feature = self.sfe_compute_feature(path,node_pair[0],node_pair[1])#计算路径特征值
+    #            if i == main_col:
+    #                if path_feature == 0:#判断关系标签,只运行一遍
+    #                    labels = labels + [0]
+    #                else:
+    #                    labels = labels + [1]
+    #            node_pair_feature = node_pair_feature + [path_feature]
+    #        data['path'+str(i)] = node_pair_feature
+    #        time_end = time.time() #开始计时
+    #        print('Path',i,'Computed,','Time Cost:',time_end-time_start,'s')
+    #        node_pair_feature = [] 
+    #        i += 1  
 
-        data['relation_labels'] = labels
-        with open(config['data_name'],'wb') as f:
-            pickle.dump(data,f)
+    #    data['relation_labels'] = labels
+    #    with open(config['data_name'],'wb') as f:
+    #        pickle.dump(data,f)
 
-        #with open('dataset.txt','rb') as f:
-        #    data = pickle.load(f)
+    #    #with open('dataset.txt','rb') as f:
+    #    #    data = pickle.load(f)
 
-        train_data = pd.DataFrame(data)#转换为DataFrame
-        print('训练数据格式:')
-        print(train_data.head())
-        i = 0
-        exam_X = train_data.loc[:,['path'+str(i) for i in range(len(paths))]]#提取特征向量与标签
-        exam_Y = train_data.loc[:,'relation_labels']
-        X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= 0.8)#分开训练集与测试集数据
-        return X_train,X_test,Y_train,Y_test
+    #    train_data = pd.DataFrame(data)#转换为DataFrame
+    #    print('训练数据格式:')
+    #    print(train_data.head())
+    #    i = 0
+    #    exam_X = train_data.loc[:,['path'+str(i) for i in range(len(paths))]]#提取特征向量与标签
+    #    exam_Y = train_data.loc[:,'relation_labels']
+    #    X_train,X_test,Y_train,Y_test=train_test_split(exam_X,exam_Y,train_size= 0.8)#分开训练集与测试集数据
+    #    return X_train,X_test,Y_train,Y_test
 
     def train(self,X_train,Y_train,X_test,Y_test):
         """训练"""
@@ -417,9 +417,11 @@ class PRA_Model():
             i += 1
         pre_data = pd.Series(pre_data).values.reshape(1,-1)
         print('pre_data:',pre_data,' shape:',pre_data.shape)
-        print(self.Model.predict_proba(pre_data))
-        print(self.Model.predict(pre_data))
-        print('Weights:',self.Model.coef_,'Bias:',self.Model.intercept_)
+        proba = self.Model.predict_proba(pre_data)
+        print(proba)
+        predict = self.Model.predict(pre_data)
+        print(predict)
+        return pre_data,proba,predict
 
 if __name__=="__main__":
     PRA = PRA_Model(relation_num=3,Graph=Military)
